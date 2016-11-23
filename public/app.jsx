@@ -1,7 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Quote = require('public/components/Quote.jsx');
 
 ReactDOM.render(
-  <h1>Hi</h1>,
+  <Quote/>,
     document.getElementById('app')
 );

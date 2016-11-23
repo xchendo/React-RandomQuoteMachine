@@ -48,12 +48,9 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
+	var Quote = __webpack_require__(178);
 
-	ReactDOM.render(React.createElement(
-	  'h1',
-	  null,
-	  'Hi'
-	), document.getElementById('app'));
+	ReactDOM.render(React.createElement(Quote, null), document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -21441,6 +21438,107 @@
 
 	module.exports = ReactDOMInvalidARIAHook;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var QuoteDisplay = __webpack_require__(179);
+	var QuoteButtons = __webpack_require__(180);
+
+	var Quote = React.createClass({
+	  displayName: 'Quote',
+
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      name: 'George Loaiza',
+	      quote: 'Welcome to my Quote Machine!'
+	    };
+	  },
+	  render: function render() {
+	    var name;
+	    var quote;
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Random Quote Machine'
+	      ),
+	      React.createElement(QuoteDisplay, { name: this.props.name, quote: this.props.quote }),
+	      React.createElement(QuoteButtons, null)
+	    );
+	  }
+
+	});
+
+	module.exports = Quote;
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var QuoteDisplay = React.createClass({
+	  displayName: 'QuoteDisplay',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h2',
+	        null,
+	        this.props.quote
+	      ),
+	      React.createElement(
+	        'h3',
+	        null,
+	        this.props.name
+	      )
+	    );
+	  }
+	});
+
+	module.exports = QuoteDisplay;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var QuoteButtons = React.createClass({
+	  displayName: 'QuoteButtons',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'button',
+	        null,
+	        'New Quote'
+	      ),
+	      React.createElement(
+	        'button',
+	        null,
+	        'Tweet this quote!'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = QuoteButtons;
 
 /***/ }
 /******/ ]);
