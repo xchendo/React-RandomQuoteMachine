@@ -21454,13 +21454,25 @@
 
 	  getDefaultProps: function getDefaultProps() {
 	    return {
-	      name: 'George Loaiza',
+	      author: 'George Loaiza',
 	      quote: 'Welcome to my Quote Machine!'
 	    };
 	  },
+	  getInitialState: function getInitialState() {
+	    return {
+	      author: this.props.author,
+	      quote: this.props.quote
+	    };
+	  },
+	  handleNewData: function handleNewData(chosenQuote) {
+	    this.setState({
+	      author: chosenQuote.author,
+	      quote: chosenQuote.quote
+	    });
+	  },
 	  render: function render() {
-	    var name;
-	    var quote;
+	    var author = this.state.author;
+	    var quote = this.state.quote;
 	    return React.createElement(
 	      'div',
 	      null,
@@ -21469,8 +21481,8 @@
 	        null,
 	        'Random Quote Machine'
 	      ),
-	      React.createElement(QuoteDisplay, { name: this.props.name, quote: this.props.quote }),
-	      React.createElement(QuoteButtons, null)
+	      React.createElement(QuoteDisplay, { author: author, quote: quote }),
+	      React.createElement(QuoteButtons, { onNewData: this.handleNewData })
 	    );
 	  }
 
@@ -21501,7 +21513,7 @@
 	      React.createElement(
 	        'h3',
 	        null,
-	        this.props.name
+	        this.props.author
 	      )
 	    );
 	  }
@@ -21520,13 +21532,34 @@
 	var QuoteButtons = React.createClass({
 	  displayName: 'QuoteButtons',
 
+
+	  handleNewQuote: function handleNewQuote() {
+	    var quotesObject = [{
+	      id: 0,
+	      author: 'toots',
+	      quote: 'Hello There'
+	    }, {
+	      id: 1,
+	      author: 'Me',
+	      quote: 'Byeee'
+	    }];
+	    var chosenQuote = this.pickQuote(quotesObject);
+	    this.props.onNewData(chosenQuote);
+	  },
+	  pickQuote: function pickQuote(quotesObject) {
+	    var min = Math.ceil(0);
+	    var max = Math.floor(quotesObject.length);
+	    var randomQuoteIndex = Math.floor(Math.random() * (max - min)) + min;
+	    return quotesObject[randomQuoteIndex];
+	  },
+
 	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      null,
 	      React.createElement(
 	        'button',
-	        null,
+	        { onClick: this.handleNewQuote },
 	        'New Quote'
 	      ),
 	      React.createElement(

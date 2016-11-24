@@ -5,7 +5,7 @@ var QuoteDisplay = React.createClass({
     return(
       <div>
         <h2>{this.props.quote}</h2>
-        <h3>{this.props.name}</h3>
+        <h3>{this.props.author}</h3>
       </div>
     )
   }

@@ -5,18 +5,30 @@ var QuoteButtons = require('public/components/QuoteButtons.jsx');
 var Quote = React.createClass({
   getDefaultProps: function(){
     return {
-    name: 'George Loaiza',
+    author: 'George Loaiza',
     quote: 'Welcome to my Quote Machine!'
     };
   },
+  getInitialState: function(){
+    return{
+      author: this.props.author,
+      quote: this.props.quote
+    };
+  },
+  handleNewData: function(chosenQuote){
+    this.setState({
+      author: chosenQuote.author,
+      quote: chosenQuote.quote
+    });
+  },
   render: function(){
-    var name;
-    var quote;
+    var author = this.state.author;
+    var quote = this.state.quote;
     return(
       <div>
         <h1>Random Quote Machine</h1>
-        <QuoteDisplay name = {this.props.name} quote = {this.props.quote}/>
-        <QuoteButtons/>
+        <QuoteDisplay author = {author} quote = {quote}/>
+        <QuoteButtons onNewData = {this.handleNewData}/>
       </div>
     );
   }
