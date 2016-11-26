@@ -6,6 +6,9 @@ var Quote = require('Quote');
 require('style!css!foundation-sites/dist/foundation.min.css')
 $(document).foundation();
 
+//Load css
+require('!style!css!sass!applicationStyles')
+
 ReactDOM.render(
   <Quote/>,
     document.getElementById('app')

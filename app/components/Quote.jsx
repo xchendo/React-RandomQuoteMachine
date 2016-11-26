@@ -26,7 +26,7 @@ var Quote = React.createClass({
     var quote = this.state.quote;
     return(
       <div>
-        <h1>Random Quote Machine</h1>
+        <h1 className = "center">Random Quote Machine</h1>
         <QuoteDisplay author = {author} quote = {quote}/>
         <QuoteButtons onNewData = {this.handleNewData}/>
       </div>

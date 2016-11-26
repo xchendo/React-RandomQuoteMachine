@@ -103,6 +103,9 @@
 	__webpack_require__(188);
 	$(document).foundation();
 
+	//Load css
+	__webpack_require__(192);
+
 	ReactDOM.render(React.createElement(Quote, null), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
@@ -21558,7 +21561,7 @@
 	      null,
 	      React.createElement(
 	        'h1',
-	        null,
+	        { className: 'center' },
 	        'Random Quote Machine'
 	      ),
 	      React.createElement(QuoteDisplay, { author: author, quote: quote }),
@@ -21999,6 +22002,46 @@
 		if(oldSrc)
 			URL.revokeObjectURL(oldSrc);
 	}
+
+
+/***/ },
+/* 192 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(193);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(191)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./app.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./app.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(190)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".center {\n  text-align: center;\n  color: red; }\n", ""]);
+
+	// exports
 
 
 /***/ }

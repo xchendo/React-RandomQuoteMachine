@@ -24,7 +24,8 @@ module.exports = {
     alias:{
       Quote: 'app/components/Quote.jsx',
       QuoteButtons: 'app/components/QuoteButtons.jsx',
-      QuoteDisplay: 'app/components/QuoteDisplay.jsx'
+      QuoteDisplay: 'app/components/QuoteDisplay.jsx',
+      applicationStyles: 'app/styles/app.scss'
     },
     extensions: ['', '.js', 'jsx']
   },
