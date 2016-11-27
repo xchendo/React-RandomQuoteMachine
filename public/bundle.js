@@ -21564,8 +21564,8 @@
 	        { className: 'center' },
 	        'Random Quote Machine'
 	      ),
-	      React.createElement(QuoteDisplay, { author: author, quote: quote }),
-	      React.createElement(QuoteButtons, { onNewData: this.handleNewData })
+	      React.createElement(QuoteButtons, { onNewData: this.handleNewData }),
+	      React.createElement(QuoteDisplay, { author: author, quote: quote })
 	    );
 	  }
 
@@ -21577,28 +21577,28 @@
 /* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var React = __webpack_require__(8);
 
 	var QuoteDisplay = React.createClass({
-	  displayName: 'QuoteDisplay',
+	  displayName: "QuoteDisplay",
 
 	  render: function render() {
 	    return React.createElement(
-	      'div',
-	      null,
+	      "div",
+	      { className: "center callout small secondary " },
 	      React.createElement(
-	        'h2',
-	        null,
-	        '"',
+	        "h2",
+	        { className: "quote" },
+	        "\u201C",
 	        this.props.quote,
-	        '"'
+	        "\u201D"
 	      ),
 	      React.createElement(
-	        'h3',
+	        "h3",
 	        null,
-	        '-',
+	        "- ",
 	        this.props.author
 	      )
 	    );
@@ -21646,8 +21646,8 @@
 	      quote: 'Hope begins in the dark, the stubborn hope that if just show up and try to do the right thing, the dawn come. You wait and watch and work: you don’t give up.'
 	    }, {
 	      id: 6,
-	      author: '',
-	      quote: 'In baseball, my theory is to strive for consistency,not to worry about the numbers. If you dwellon statistics you get shortsighted; if you aim for consistency, the numbers will be there at the end.'
+	      author: 'Tom Seaver',
+	      quote: 'In baseball, my theory is to strive for consistency,not to worry about the numbers. If you dwell on statistics you get shortsighted; if you aim for consistency, the numbers will be there at the end.'
 	    }, {
 	      id: 7,
 	      author: 'Winston Churchill',
@@ -21706,7 +21706,7 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'center' },
 	      React.createElement(
 	        'button',
 	        { className: 'hollow button', onClick: this.handleNewQuote },
@@ -22106,7 +22106,7 @@
 
 
 	// module
-	exports.push([module.id, ".center {\n  text-align: center;\n  color: red; }\n", ""]);
+	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\nhtml, body {\n  text-align: center;\n  letter-spacing: 1px; }\n\nh2 {\n  max-width: 33ch;\n  margin: 0 auto; }\n", ""]);
 
 	// exports
 

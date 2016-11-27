@@ -35,8 +35,8 @@ var QuoteButtons = React.createClass({
     },
     {
       id: 6,
-      author:'',
-      quote:'In baseball, my theory is to strive for consistency,not to worry about the numbers. If you dwellon statistics you get shortsighted; if you aim for consistency, the numbers will be there at the end.'
+      author:'Tom Seaver',
+      quote:'In baseball, my theory is to strive for consistency,not to worry about the numbers. If you dwell on statistics you get shortsighted; if you aim for consistency, the numbers will be there at the end.'
     },
     {
       id: 7,
@@ -106,7 +106,7 @@ var QuoteButtons = React.createClass({
 
   render: function(){
     return(
-      <div>
+      <div className="center">
       <button className = "hollow button" onClick ={this.handleNewQuote}>New Quote</button>
       <button className = "alert button">Tweet this quote!</button>
       </div>
