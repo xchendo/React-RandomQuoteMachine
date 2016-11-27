@@ -21558,14 +21558,18 @@
 	    var quote = this.state.quote;
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'row' },
 	      React.createElement(
 	        'h1',
 	        { className: 'center' },
-	        'Random Quote Machine'
+	        'Motivational Quotes'
 	      ),
-	      React.createElement(QuoteButtons, { onNewData: this.handleNewData }),
-	      React.createElement(QuoteDisplay, { author: author, quote: quote })
+	      React.createElement(
+	        'div',
+	        { className: 'quoteContainer' },
+	        React.createElement(QuoteButtons, { onNewData: this.handleNewData }),
+	        React.createElement(QuoteDisplay, { author: author, quote: quote })
+	      )
 	    );
 	  }
 
@@ -21587,19 +21591,21 @@
 	  render: function render() {
 	    return React.createElement(
 	      "div",
-	      { className: "center callout small secondary " },
+	      { className: "center quoteContainer callout primary small small-6" },
+	      React.createElement("i", { className: "fa fa-quote-left quoteButton", "aria-hidden": "true" }),
 	      React.createElement(
-	        "h2",
-	        { className: "quote" },
-	        "\u201C",
-	        this.props.quote,
-	        "\u201D"
-	      ),
-	      React.createElement(
-	        "h3",
+	        "blockquote",
 	        null,
-	        "- ",
-	        this.props.author
+	        React.createElement(
+	          "p",
+	          { className: "quote" },
+	          this.props.quote
+	        ),
+	        React.createElement(
+	          "cite",
+	          null,
+	          this.props.author
+	        )
 	      )
 	    );
 	  }
@@ -21706,16 +21712,16 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { className: 'center' },
+	      { className: 'center small-6 button-group' },
 	      React.createElement(
 	        'button',
 	        { className: 'hollow button', onClick: this.handleNewQuote },
-	        'New Quote'
+	        React.createElement('i', { className: 'fa fa-random fa-2x' })
 	      ),
 	      React.createElement(
 	        'button',
 	        { className: 'alert button' },
-	        'Tweet this quote!'
+	        React.createElement('i', { className: 'fa fa-twitter fa-2x' })
 	      )
 	    );
 	  }
@@ -22106,7 +22112,7 @@
 
 
 	// module
-	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\nhtml, body {\n  text-align: center;\n  letter-spacing: 1px; }\n\nh2 {\n  max-width: 33ch;\n  margin: 0 auto; }\n", ""]);
+	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\nhtml, body {\n  font-size: 18px;\n  text-align: center;\n  letter-spacing: 1px;\n  color: black; }\n\n.pull-right {\n  float: right; }\n\n.pull-left {\n  float: left; }\n\n.center {\n  margin: 0 auto; }\n\nblockquote, blockquote p {\n  color: black; }\n\n.quoteContainer {\n  position: relative; }\n\n.quote {\n  margin: 0 auto; }\n\n.quoteButton {\n  border: 2px solid #ccc;\n  border-radius: 100%;\n  padding: 10px 12px;\n  display: inline-block; }\n", ""]);
 
 	// exports
 

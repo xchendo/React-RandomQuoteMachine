@@ -106,9 +106,9 @@ var QuoteButtons = React.createClass({
 
   render: function(){
     return(
-      <div className="center">
-      <button className = "hollow button" onClick ={this.handleNewQuote}>New Quote</button>
-      <button className = "alert button">Tweet this quote!</button>
+      <div className="center small-6 button-group">
+      <button className = "hollow button" onClick ={this.handleNewQuote}><i className ="fa fa-random fa-2x"></i></button>
+      <button className = "alert button"><i className = "fa fa-twitter fa-2x"></i></button>
       </div>
     );
   }

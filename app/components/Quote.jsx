@@ -25,10 +25,12 @@ var Quote = React.createClass({
     var author = this.state.author;
     var quote = this.state.quote;
     return(
-      <div>
-        <h1 className = "center">Random Quote Machine</h1>
+      <div className = "row">
+        <h1 className = "center">Motivational Quotes</h1>
+        <div className="quoteContainer">
         <QuoteButtons onNewData = {this.handleNewData}/>
         <QuoteDisplay author = {author} quote = {quote}/>
+        </div>
       </div>
     );
   }

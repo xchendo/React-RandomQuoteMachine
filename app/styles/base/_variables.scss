@@ -1,5 +1,4 @@
 
-
 *{
   margin: 0;
   padding: 0;
@@ -7,6 +6,28 @@
 }
 
 html,body{
-    text-align: center;
-    letter-spacing: 1px;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 1px;
+  color: black;
+}
+
+.pull-right{
+  float:right;
+}
+
+.pull-left{
+  float: left;
+}
+
+.center{
+  margin: 0 auto;
+}
+
+blockquote,blockquote p{
+  color: black;
+}
+
+.quoteContainer{
+  position: relative;
 }

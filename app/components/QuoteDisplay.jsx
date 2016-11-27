@@ -3,9 +3,12 @@ var React = require('react');
 var QuoteDisplay = React.createClass({
   render: function(){
     return(
-      <div className = "center callout small secondary ">
-        <h2 className = "quote">&ldquo;{this.props.quote}&rdquo;</h2>
-        <h3>- {this.props.author}</h3>
+      <div className = "center quoteContainer callout primary small small-6">
+        <i className="fa fa-quote-left quoteButton" aria-hidden="true"></i>
+        <blockquote>
+        <p className = "quote">{this.props.quote}</p>
+        <cite>{this.props.author}</cite>
+        </blockquote>
       </div>
     )
   }
