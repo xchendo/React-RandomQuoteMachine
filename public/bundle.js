@@ -21591,7 +21591,7 @@
 	  render: function render() {
 	    return React.createElement(
 	      "div",
-	      { className: "center quoteContainer callout primary small small-6" },
+	      { className: "center quoteContainer callout primary small small-10 medium-6" },
 	      React.createElement("i", { className: "fa fa-quote-left quoteButton", "aria-hidden": "true" }),
 	      React.createElement(
 	        "blockquote",
