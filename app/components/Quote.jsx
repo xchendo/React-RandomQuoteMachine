@@ -27,7 +27,7 @@ var Quote = React.createClass({
     return(
       <div className = "row">
         <h1 className = "center">Motivational Quotes</h1>
-        <div className="quoteContainer">
+        <div>
         <QuoteButtons onNewData = {this.handleNewData}/>
         <QuoteDisplay author = {author} quote = {quote}/>
         </div>

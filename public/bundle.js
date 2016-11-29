@@ -100,11 +100,11 @@
 	var Quote = __webpack_require__(185);
 
 	// Load bootstrap
-	__webpack_require__(188);
+	__webpack_require__(189);
 	$(document).foundation();
 
 	//Load css
-	__webpack_require__(192);
+	__webpack_require__(193);
 
 	ReactDOM.render(React.createElement(Quote, null), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
@@ -21566,7 +21566,7 @@
 	      ),
 	      React.createElement(
 	        'div',
-	        { className: 'quoteContainer' },
+	        null,
 	        React.createElement(QuoteButtons, { onNewData: this.handleNewData }),
 	        React.createElement(QuoteDisplay, { author: author, quote: quote })
 	      )
@@ -21620,85 +21620,14 @@
 	'use strict';
 
 	var React = __webpack_require__(8);
+	var quotesObject = __webpack_require__(188);
 
 	var QuoteButtons = React.createClass({
 	  displayName: 'QuoteButtons',
 
 
 	  handleNewQuote: function handleNewQuote() {
-	    var quotesObject = [{
-	      id: 0,
-	      author: 'Ralph Waldo Emerson',
-	      quote: 'The law of nature is, Do the thing, and you shall have the power: but they who do not the thing have not the power.'
-	    }, {
-	      id: 1,
-	      author: 'Thomas J. Watson, Sr',
-	      quote: 'The formula for success is quite simple: double your rate of failure.'
-	    }, {
-	      id: 2,
-	      author: 'Jeff Olson',
-	      quote: 'It’s never too late to start.It’s always too late to wait.'
-	    }, {
-	      id: 3,
-	      author: 'Jeff Olson',
-	      quote: 'Successful people form habits that feed their success, instead of habits that feed their failure.'
-	    }, {
-	      id: 4,
-	      author: 'Lao Tzu',
-	      quote: 'A journey of a thousand miles begins with a small step.'
-	    }, {
-	      id: 5,
-	      author: 'Anne Lamott',
-	      quote: 'Hope begins in the dark, the stubborn hope that if just show up and try to do the right thing, the dawn come. You wait and watch and work: you don’t give up.'
-	    }, {
-	      id: 6,
-	      author: 'Tom Seaver',
-	      quote: 'In baseball, my theory is to strive for consistency,not to worry about the numbers. If you dwell on statistics you get shortsighted; if you aim for consistency, the numbers will be there at the end.'
-	    }, {
-	      id: 7,
-	      author: 'Winston Churchill',
-	      quote: 'Attitude is a little thing that makes a big difference.'
-	    }, {
-	      id: 8,
-	      author: 'Napoleon Hill',
-	      quote: 'There is one quality which one must possess to win, and that is definiteness of purpose, the knowledge of what one wants, and a burning desire to possess it.'
-	    }, {
-	      id: 9,
-	      author: 'Vince Lombardi',
-	      quote: 'Leaders aren’t born, they are made. And they are just like anything else, through hard work. And that’s price we’ll have to pay to achieve that goal, or any goal.'
-	    }, {
-	      id: 10,
-	      author: 'Robert Frost',
-	      quote: 'Two roads diverged in a wood And I took the one less traveled And that has made all the difference.'
-	    }, {
-	      id: 11,
-	      author: 'John Burroughs',
-	      quote: 'A man can fail many times, but he isn’t failure until he begins to blame somebody else.'
-	    }, {
-	      id: 12,
-	      author: 'Chinese proverb',
-	      quote: 'Be not afraid of going slowly; be afraid only of standing still.'
-	    }, {
-	      id: 13,
-	      author: 'Anonymous',
-	      quote: 'Sow an act, reap a habit; Sow a habit, reap a character; Sow a character, reap a destiny.'
-	    }, {
-	      id: 14,
-	      author: 'Confucius',
-	      quote: 'Knowledge without practice is useless. Practice without knowledge is dangerous.'
-	    }, {
-	      id: 15,
-	      author: 'Johann Wolfgang von Goethe',
-	      quote: 'Whatever you can do, or dream you can, begin it. Boldness has genius, power and magic in it.'
-	    }, {
-	      id: 16,
-	      author: 'James Allen',
-	      quote: 'You will become as small as your controlling desire, or as great as your dominant aspiration.'
-	    }, {
-	      id: 17,
-	      author: 'John David Mann',
-	      quote: 'Some day ... The eighth day of the week. The only day that never comes. This is the day—this one. Right here. Right now.'
-	    }];
+
 	    var chosenQuote = this.pickQuote(quotesObject);
 	    this.props.onNewData(chosenQuote);
 	  },
@@ -21731,15 +21660,97 @@
 
 /***/ },
 /* 188 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var quotesObject = [{
+	  id: 0,
+	  author: 'Ralph Waldo Emerson',
+	  quote: 'The law of nature is, Do the thing, and you shall have the power: but they who do not the thing have not the power.'
+	}, {
+	  id: 1,
+	  author: 'Thomas J. Watson, Sr',
+	  quote: 'The formula for success is quite simple: double your rate of failure.'
+	}, {
+	  id: 2,
+	  author: 'Jeff Olson',
+	  quote: 'It’s never too late to start.It’s always too late to wait.'
+	}, {
+	  id: 3,
+	  author: 'Jeff Olson',
+	  quote: 'Successful people form habits that feed their success, instead of habits that feed their failure.'
+	}, {
+	  id: 4,
+	  author: 'Lao Tzu',
+	  quote: 'A journey of a thousand miles begins with a small step.'
+	}, {
+	  id: 5,
+	  author: 'Anne Lamott',
+	  quote: 'Hope begins in the dark, the stubborn hope that if just show up and try to do the right thing, the dawn come. You wait and watch and work: you don’t give up.'
+	}, {
+	  id: 6,
+	  author: 'Tom Seaver',
+	  quote: 'In baseball, my theory is to strive for consistency,not to worry about the numbers. If you dwell on statistics you get shortsighted; if you aim for consistency, the numbers will be there at the end.'
+	}, {
+	  id: 7,
+	  author: 'Winston Churchill',
+	  quote: 'Attitude is a little thing that makes a big difference.'
+	}, {
+	  id: 8,
+	  author: 'Napoleon Hill',
+	  quote: 'There is one quality which one must possess to win, and that is definiteness of purpose, the knowledge of what one wants, and a burning desire to possess it.'
+	}, {
+	  id: 9,
+	  author: 'Vince Lombardi',
+	  quote: 'Leaders aren’t born, they are made. And they are just like anything else, through hard work. And that’s price we’ll have to pay to achieve that goal, or any goal.'
+	}, {
+	  id: 10,
+	  author: 'Robert Frost',
+	  quote: 'Two roads diverged in a wood And I took the one less traveled And that has made all the difference.'
+	}, {
+	  id: 11,
+	  author: 'John Burroughs',
+	  quote: 'A man can fail many times, but he isn’t failure until he begins to blame somebody else.'
+	}, {
+	  id: 12,
+	  author: 'Chinese proverb',
+	  quote: 'Be not afraid of going slowly; be afraid only of standing still.'
+	}, {
+	  id: 13,
+	  author: 'Anonymous',
+	  quote: 'Sow an act, reap a habit; Sow a habit, reap a character; Sow a character, reap a destiny.'
+	}, {
+	  id: 14,
+	  author: 'Confucius',
+	  quote: 'Knowledge without practice is useless. Practice without knowledge is dangerous.'
+	}, {
+	  id: 15,
+	  author: 'Johann Wolfgang von Goethe',
+	  quote: 'Whatever you can do, or dream you can, begin it. Boldness has genius, power and magic in it.'
+	}, {
+	  id: 16,
+	  author: 'James Allen',
+	  quote: 'You will become as small as your controlling desire, or as great as your dominant aspiration.'
+	}, {
+	  id: 17,
+	  author: 'John David Mann',
+	  quote: 'Some day ... The eighth day of the week. The only day that never comes. This is the day—this one. Right here. Right now.'
+	}];
+
+	module.exports = quotesObject;
+
+/***/ },
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(189);
+	var content = __webpack_require__(190);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(191)(content, {});
+	var update = __webpack_require__(192)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -21756,10 +21767,10 @@
 	}
 
 /***/ },
-/* 189 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(190)();
+	exports = module.exports = __webpack_require__(191)();
 	// imports
 
 
@@ -21770,7 +21781,7 @@
 
 
 /***/ },
-/* 190 */
+/* 191 */
 /***/ function(module, exports) {
 
 	/*
@@ -21826,7 +21837,7 @@
 
 
 /***/ },
-/* 191 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -22078,16 +22089,16 @@
 
 
 /***/ },
-/* 192 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(193);
+	var content = __webpack_require__(194);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(191)(content, {});
+	var update = __webpack_require__(192)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22104,15 +22115,15 @@
 	}
 
 /***/ },
-/* 193 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(190)();
+	exports = module.exports = __webpack_require__(191)();
 	// imports
-
+	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Tillana);", ""]);
 
 	// module
-	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\nhtml, body {\n  font-size: 18px;\n  text-align: center;\n  letter-spacing: 1px;\n  color: black; }\n\n.pull-right {\n  float: right; }\n\n.pull-left {\n  float: left; }\n\n.center {\n  margin: 0 auto; }\n\nblockquote, blockquote p {\n  color: black; }\n\n.quoteContainer {\n  position: relative; }\n\n.quote {\n  margin: 0 auto; }\n\n.quoteButton {\n  border: 2px solid #ccc;\n  border-radius: 100%;\n  padding: 10px 12px;\n  display: inline-block; }\n", ""]);
+	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\nhtml, body {\n  font-size: 18px;\n  font-family: 'Tillana', cursive;\n  text-align: center;\n  letter-spacing: 1px;\n  color: black;\n  background-image: url(https://d1hw6n3yxknhky.cloudfront.net/011956685_prevstill.jpeg);\n  background-repeat: no-repeat;\n  background-position: center; }\n\nh1 {\n  font-family: 'Tillana', cursive; }\n\n.pull-right {\n  float: right; }\n\n.pull-left {\n  float: left; }\n\n.center {\n  margin: 0 auto; }\n\nblockquote, blockquote p {\n  color: black; }\n\n.quote {\n  margin: 0 auto; }\n\n.quoteButton {\n  border: 2px solid #ccc;\n  border-radius: 100%;\n  padding: 10px 12px;\n  display: inline-block; }\n\n.button.alert {\n  background-color: #00aced; }\n", ""]);
 
 	// exports
 

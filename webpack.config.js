@@ -25,6 +25,7 @@ module.exports = {
       Quote: 'app/components/Quote.jsx',
       QuoteButtons: 'app/components/QuoteButtons.jsx',
       QuoteDisplay: 'app/components/QuoteDisplay.jsx',
+      QuotesObject: 'app/components/QuotesObject.jsx',
       applicationStyles: 'app/styles/app.scss'
     },
     extensions: ['', '.js', 'jsx']

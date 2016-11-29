@@ -7,9 +7,17 @@
 
 html,body{
   font-size: 18px;
+  font-family: 'Tillana', cursive;
   text-align: center;
   letter-spacing: 1px;
   color: black;
+  background-image: url(https://d1hw6n3yxknhky.cloudfront.net/011956685_prevstill.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+h1{
+  font-family: 'Tillana', cursive;
 }
 
 .pull-right{
@@ -26,8 +34,4 @@ html,body{
 
 blockquote,blockquote p{
   color: black;
-}
-
-.quoteContainer{
-  position: relative;
 }
