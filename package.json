@@ -4,7 +4,8 @@
   "description": "My Random Quote Machine redone using React",
   "main": "app.jsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon server.js --ignore public/"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,8 @@
   "homepage": "https://github.com/xchendo/React-RandomQuoteMachine#readme",
   "dependencies": {
     "express": "^4.16.1",
+    "mongoose": "^4.12.1",
+    "nodemon": "^1.12.1",
     "react": "^15.6.2",
     "react-dom": "^15.6.2"
   },

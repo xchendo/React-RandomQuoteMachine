@@ -1,7 +1,9 @@
 
 var express = require('express');
-
 var app = express();
+
+const routes = require('./routes/index');
+
 const PORT = process.env.PORT || 3000;
 
 app.use(function (req, res, next){
@@ -13,6 +15,8 @@ app.use(function (req, res, next){
 });
 
 app.use(express.static('public'));
+
+app.use('/api', routes);
 
 app.listen(PORT, function() {
   console.log('Express is up on port ' + PORT);
