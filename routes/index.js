@@ -4,6 +4,8 @@ const router = express.Router();
 // import controller
 const quoteController = require('../controllers/quoteController');
 
-router.get('/add', quoteController.addQuote);
+router.post('/random', quoteController.getRandomQuote);
+router.post('/all', quoteController.getAllQuotes);
+router.post('/add', quoteController.addQuote);
 
 module.exports = router;

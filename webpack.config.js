@@ -3,7 +3,7 @@ var webpack = require('webpack');
 module.exports = {
   entry: [
     'script!jquery/dist/jquery.min.js',
-    'script!foundation-sites/dist/foundation.min.js',
+    //'script!foundation-sites/dist/foundation.min.js',
     './app/app.jsx'
   ],
   externals:{
@@ -26,6 +26,8 @@ module.exports = {
       QuoteButtons: 'app/components/QuoteButtons.jsx',
       QuoteDisplay: 'app/components/QuoteDisplay.jsx',
       QuotesObject: 'app/components/QuotesObject.jsx',
+      AddQuoteForm: 'app/components/AddQuoteForm.jsx',
+      API: 'api/api.js',
       applicationStyles: 'app/styles/app.scss'
     },
     extensions: ['', '.js', 'jsx']

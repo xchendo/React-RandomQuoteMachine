@@ -1,6 +1,8 @@
 var React = require('react');
 var QuoteDisplay = require('QuoteDisplay');
 var QuoteButtons = require('QuoteButtons');
+import AddQuoteForm from 'AddQuoteForm';
+import API from 'API';
 
 var Quote = React.createClass({
   getDefaultProps: function(){
@@ -18,7 +20,7 @@ var Quote = React.createClass({
   handleNewData: function(chosenQuote){
     this.setState({
       author: chosenQuote.author,
-      quote: chosenQuote.quote
+      quote: chosenQuote.text
     });
   },
   render: function(){
@@ -29,7 +31,8 @@ var Quote = React.createClass({
         <h1 className = "center">Motivational Quotes</h1>
         <div>
         <QuoteButtons onNewData = {this.handleNewData}/>
-        <QuoteDisplay author = {author} quote = {quote}/>
+        <QuoteDisplay author = {author} quote = {quote}/> 
+        <AddQuoteForm/>
         </div>
       </div>
     );

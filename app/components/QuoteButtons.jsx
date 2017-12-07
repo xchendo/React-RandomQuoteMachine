@@ -1,12 +1,15 @@
 var React = require('react');
 var quotesObject = require('QuotesObject');
+import api from 'API';
 
 var QuoteButtons = React.createClass({
 
   handleNewQuote: function(){
-
-    var chosenQuote = this.pickQuote(quotesObject);
-    this.props.onNewData(chosenQuote);
+    api.getRandomQuote().then(resp =>{
+      this.props.onNewData(resp.data);
+    });
+    //var chosenQuote = this.pickQuote(quotesObject);
+    //this.props.onNewData(chosenQuote);
   },
   pickQuote: function(quotesObject){
     var min = Math.ceil(0);
