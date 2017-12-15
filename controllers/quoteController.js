@@ -30,6 +30,16 @@ exports.getRandomQuote = (req, res) => {
   });
 }
 
+exports.getSpecificQuote = (req, res) => {
+  console.log(req.params.id);
+  Quote.findOne({
+    _id: req.params.id
+  }, (err, quote) => {
+    if (err) { next(err); }
+    res.send(quote);
+  });
+}
+
 // Make this one internal only, so as to not overload the server
 exports.getAllQuotes = (req,res) => {
   Quote.find( (err, data) => {

@@ -7,5 +7,6 @@ const quoteController = require('../controllers/quoteController');
 router.post('/random', quoteController.getRandomQuote);
 router.post('/all', quoteController.getAllQuotes);
 router.post('/add', quoteController.addQuote);
+router.post('/:id', quoteController.getSpecificQuote);
 
 module.exports = router;

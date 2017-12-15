@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-function addQuote(data) {
+function addQuote(text, author) {
   return axios.post('/api/add', {
-    text: data.text,
-    author: data.author
+    text,
+    author
   }).then(function(resp){
     console.log(resp.data);
   });
@@ -18,5 +18,10 @@ module.exports = {
   },
   getRandomQuote() {
     return axios.post('/api/random');
+  },
+  getSpecificQuote() {
+    return axios.post('/api/2').then((resp) => {
+      console.log(resp.data);
+    });
   }
 }

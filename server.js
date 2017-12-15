@@ -1,6 +1,8 @@
 // start up the database
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+require('dotenv').config({path:'variables.env'});
+
 //import quote schema
 require('./models/Quote');
 
@@ -8,7 +10,7 @@ require('./models/Quote');
 // Connect dat DB
 
 // TODO: get db host from variables.env
-mongoose.connect("mongodb://root:10112017@ds023510.mlab.com:23510/xchendo-quotes");
+mongoose.connect(process.env.DATABASE);
 mongoose.connection.on('error', (err) => {
   console.error(err.message);
 });
@@ -36,5 +38,6 @@ app.use(express.static('public'));
 app.use('/api', routes);
 
 app.listen(PORT, function() {
+  console.log(process.env.DATABASE);
   console.log('Express is up on port ' + PORT);
 });

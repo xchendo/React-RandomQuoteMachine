@@ -145,13 +145,15 @@
 	  getDefaultProps: function getDefaultProps() {
 	    return {
 	      author: 'George Loaiza',
-	      quote: 'Welcome to my Quote Machine!'
+	      quote: 'Welcome to my Quote Machine!',
+	      showForm: true
 	    };
 	  },
 	  getInitialState: function getInitialState() {
 	    return {
 	      author: this.props.author,
-	      quote: this.props.quote
+	      quote: this.props.quote,
+	      show: this.props.show
 	    };
 	  },
 	  handleNewData: function handleNewData(chosenQuote) {
@@ -160,9 +162,31 @@
 	      quote: chosenQuote.text
 	    });
 	  },
+	  toggleView: function toggleView(show) {
+	    this.setState({ showForm: !this.state.showForm });
+	  },
 	  render: function render() {
 	    var author = this.state.author;
 	    var quote = this.state.quote;
+	    var showForm = this.state.showForm;
+	    var component = null;
+	    var toggleBtnTxt = null;
+
+	    if (showForm) {
+	      component = React.createElement(_AddQuoteForm2.default, null);
+	      toggleBtnTxt = 'Show quotes';
+	    } else {
+	      component = React.createElement(
+	        'div',
+	        null,
+	        ' ',
+	        React.createElement(QuoteButtons, { onNewData: this.handleNewData }),
+	        React.createElement(QuoteDisplay, { author: author, quote: quote })
+	      );
+	      toggleBtnTxt = 'Add your own';
+	    }
+
+	    // 2 views, either 'form' or 'quote'
 	    return React.createElement(
 	      'div',
 	      { className: 'row' },
@@ -174,9 +198,12 @@
 	      React.createElement(
 	        'div',
 	        null,
-	        React.createElement(QuoteButtons, { onNewData: this.handleNewData }),
-	        React.createElement(QuoteDisplay, { author: author, quote: quote }),
-	        React.createElement(_AddQuoteForm2.default, null)
+	        component,
+	        React.createElement(
+	          'button',
+	          { type: 'button', className: 'button button--blue', onClick: this.toggleView },
+	          toggleBtnTxt
+	        )
 	      )
 	    );
 	  }
@@ -205,7 +232,8 @@
 	  function handleSubmit() {
 	    var text = document.getElementsByName("quoteText")[0].value;
 	    var author = document.getElementsByName("quoteAuthor")[0].value;
-	    _API2.default.addQuote(text, author);
+	    //api.getSpecificQuote();
+	    _API2.default.addQuote(author, text);
 	  }
 	  return _react2.default.createElement(
 	    'div',
@@ -5001,10 +5029,10 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function addQuote(data) {
+	function addQuote(text, author) {
 	  return _axios2.default.post('/api/add', {
-	    text: data.text,
-	    author: data.author
+	    text: text,
+	    author: author
 	  }).then(function (resp) {
 	    console.log(resp.data);
 	  });
@@ -5019,6 +5047,11 @@
 	  },
 	  getRandomQuote: function getRandomQuote() {
 	    return _axios2.default.post('/api/random');
+	  },
+	  getSpecificQuote: function getSpecificQuote() {
+	    return _axios2.default.post('/api/2').then(function (resp) {
+	      console.log(resp.data);
+	    });
 	  }
 	};
 
