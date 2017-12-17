@@ -9,6 +9,13 @@ const Quote = mongoose.model('Quote');
 * Possible to implement some middleware to check if that quote exists already?
 *
 */
+
+const status = {
+  error: "Error",
+  success: "Success"
+};
+
+
 exports.addQuote = (req, res) => {
   let test = {
     text: req.body.text,
@@ -17,7 +24,10 @@ exports.addQuote = (req, res) => {
   
   const quote = new Quote(test).save(function (err, req1, res2, next) {
     if (err) { console.log(err); next(err);}
-    res.send("Success!");
+    res.send({
+      status: 'Success',
+      text: 'Successfully added your quote. Thanks for sharing!'
+    }); 
   });
 }
 

@@ -1,6 +1,7 @@
 var React = require('react');
 var quotesObject = require('QuotesObject');
 import api from 'API';
+import Utility from 'Utility';
 
 var QuoteButtons = React.createClass({
 

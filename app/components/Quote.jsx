@@ -2,7 +2,9 @@ const React = require('react');
 const QuoteDisplay = require('QuoteDisplay');
 const QuoteButtons = require('QuoteButtons');
 import AddQuoteForm from 'AddQuoteForm';
+import Flash from 'Flash';
 import API from 'API';
+
 
 let Quote = React.createClass({
   getDefaultProps: function(){
@@ -51,6 +53,7 @@ let Quote = React.createClass({
           {component}
           <button type="button"  className="button button--blue" onClick = {this.toggleView}>{toggleBtnTxt}</button>
         </div>
+        <Flash/>
       </div>
     );
   }

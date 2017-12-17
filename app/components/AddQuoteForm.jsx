@@ -1,12 +1,15 @@
 import React from 'react';
 import api from 'API';
+import Utility from 'Utility';
 
 function AddQuoteForm() {
   function handleSubmit(){
     let text = document.getElementsByName("quoteText")[0].value;
     let author = document.getElementsByName("quoteAuthor")[0].value;
     //api.getSpecificQuote();
-    api.addQuote(author, text);
+    api.addQuote(author, text).then( (resp) => {
+      Utility.flash(resp.data);
+    });
   }
   return (
     <div className="form">
