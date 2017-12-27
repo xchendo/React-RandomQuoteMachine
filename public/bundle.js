@@ -6602,10 +6602,15 @@
 	'use strict';
 
 	module.exports = {
+	  // Flash the success or error message
 	  flash: function flash(resp) {
-	    console.log(resp);
+	    var $messageContainer = document.getElementsByClassName('messageContainer')[0];
+	    $messageContainer.classList.add("fadeOut");
 	    document.getElementsByClassName('messageContainer__status')[0].innerHTML = resp.status;
 	    document.getElementsByClassName('messageContainer__text')[0].innerHTML = resp.text;
+	    setTimeout(function () {
+	      $messageContainer.classList.remove('fadeOut');
+	    }, 2000);
 	  }
 	};
 
@@ -24082,7 +24087,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Tillana);", ""]);
 
 	// module
-	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\nhtml, body {\n  font-size: 18px;\n  font-family: 'Tillana', cursive;\n  text-align: center;\n  letter-spacing: 1px;\n  color: black;\n  background-image: url(https://d1hw6n3yxknhky.cloudfront.net/011956685_prevstill.jpeg);\n  background-repeat: no-repeat;\n  background-position: center; }\n\nh1 {\n  font-family: 'Tillana', cursive; }\n\n.pull-right {\n  float: right; }\n\n.pull-left {\n  float: left; }\n\n.center {\n  margin: 0 auto; }\n\nblockquote, blockquote p {\n  color: black; }\n\n.quote {\n  margin: 0 auto; }\n\n.quoteButton {\n  border: 2px solid #ccc;\n  border-radius: 100%;\n  padding: 10px 12px;\n  display: inline-block; }\n\n.button.alert {\n  background-color: #00aced; }\n\n.form {\n  margin: 0 auto;\n  width: 350px; }\n\n.form input,\n.form textarea {\n  margin-bottom: 26px;\n  padding: 18px;\n  width: 100%;\n  font-size: 18px; }\n\n.button--big {\n  padding: 12px 20px;\n  width: 100%;\n  font-size: 18px;\n  line-height: 24px; }\n\n.button--big:hover {\n  cursor: pointer; }\n\n.button--blue {\n  background-color: #1da1f2;\n  border: 1px solid #1da1f2;\n  color: #fff; }\n", ""]);
+	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\nhtml, body {\n  font-size: 18px;\n  font-family: 'Tillana', cursive;\n  text-align: center;\n  letter-spacing: 1px;\n  color: black;\n  background-image: url(https://d1hw6n3yxknhky.cloudfront.net/011956685_prevstill.jpeg);\n  background-repeat: no-repeat;\n  background-position: center; }\n\nh1 {\n  font-family: 'Tillana', cursive; }\n\n.pull-right {\n  float: right; }\n\n.pull-left {\n  float: left; }\n\n.center {\n  margin: 0 auto; }\n\nblockquote, blockquote p {\n  color: black; }\n\n@keyframes fadeOut {\n  0% {\n    opacity: 1; }\n  25% {\n    opacity: .75; }\n  50% {\n    opacity: .5; }\n  75% {\n    opacity: .25; }\n  100% {\n    opacity: 0; } }\n\n.fadeOut {\n  -webkit-animation: fadeOut 1.5s ease-out;\n  animation: fadeOut 1.5s ease-out;\n  -webkit-animation-fill-mode: forwards;\n  animation-fill-mode: forwards;\n  -webkit-animation-iteration-count: 1;\n  animation-iteration-count: 1;\n  opacity: 1; }\n\n.quote {\n  margin: 0 auto; }\n\n.quoteButton {\n  border: 2px solid #ccc;\n  border-radius: 100%;\n  padding: 10px 12px;\n  display: inline-block; }\n\n.button.alert {\n  background-color: #00aced; }\n\n.form {\n  margin: 0 auto;\n  width: 350px; }\n\n.form input,\n.form textarea {\n  margin-bottom: 26px;\n  padding: 18px;\n  width: 100%;\n  font-size: 18px; }\n\n.button--big {\n  padding: 12px 20px;\n  width: 100%;\n  font-size: 18px;\n  line-height: 24px; }\n\n.button--big:hover {\n  cursor: pointer; }\n\n.button--blue {\n  background-color: #1da1f2;\n  border: 1px solid #1da1f2;\n  color: #fff; }\n\n.messageContainer {\n  padding: 15px;\n  background-color: green;\n  color: white;\n  opacity: 0; }\n", ""]);
 
 	// exports
 
