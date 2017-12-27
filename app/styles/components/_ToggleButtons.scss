@@ -1,0 +1,21 @@
+.toggleButtons {
+  display: flex;
+  margin: 0 auto;
+  width: 66.66%;
+  
+
+  & div {
+    width: 33.4%;
+  }
+
+  & .button {
+    padding: 10px 20px 11px;
+    margin: 0;
+    width: 100%;
+    background-color: #2284a1;
+    border: 1px solid #1e728c;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+  }
+}

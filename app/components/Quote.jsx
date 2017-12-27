@@ -1,6 +1,8 @@
 const React = require('react');
 const QuoteDisplay = require('QuoteDisplay');
 const QuoteButtons = require('QuoteButtons');
+const ToggleButtons = require('ToggleButtons');
+
 import AddQuoteForm from 'AddQuoteForm';
 import Flash from 'Flash';
 import API from 'API';
@@ -50,6 +52,7 @@ let Quote = React.createClass({
       <div className = "row">
         <h1 className = "center">Motivational Quotes</h1>
         <div>
+          <ToggleButtons/>
           {component}
           <button type="button"  className="button button--blue" onClick = {this.toggleView}>{toggleBtnTxt}</button>
         </div>

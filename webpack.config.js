@@ -27,6 +27,7 @@ module.exports = {
       QuoteDisplay: 'app/components/QuoteDisplay.jsx',
       QuotesObject: 'app/components/QuotesObject.jsx',
       AddQuoteForm: 'app/components/AddQuoteForm.jsx',
+      ToggleButtons: 'app/components/ToggleButtons.jsx',
       Flash:        'app/components/Flash.jsx',
       API: 'api/api.js',
       Utility: 'utility.js',

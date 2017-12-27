@@ -114,7 +114,7 @@
 	//$(document).foundation();
 
 	//Load css
-	__webpack_require__(224);
+	__webpack_require__(227);
 
 	ReactDOM.render(React.createElement(_Quote2.default, null), document.getElementById('app'));
 
@@ -141,7 +141,7 @@
 	var React = __webpack_require__(7);
 	var QuoteDisplay = __webpack_require__(221);
 	var QuoteButtons = __webpack_require__(222);
-
+	var ToggleButtons = __webpack_require__(224);
 
 	var Quote = React.createClass({
 	  displayName: 'Quote',
@@ -202,6 +202,7 @@
 	      React.createElement(
 	        'div',
 	        null,
+	        React.createElement(ToggleButtons, null),
 	        component,
 	        React.createElement(
 	          'button',
@@ -24056,13 +24057,184 @@
 /* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(7);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(74);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _propTypes = __webpack_require__(225);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// React stateless functional component
+	function ToggleButton(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'button',
+	      { className: 'button button--third' },
+	      props.text
+	    )
+	  );
+	}
+
+	ToggleButton.propTypes = {
+	  text: _propTypes2.default.string
+	};
+
+	var ToggleButtons = function (_React$Component) {
+	  _inherits(ToggleButtons, _React$Component);
+
+	  function ToggleButtons() {
+	    _classCallCheck(this, ToggleButtons);
+
+	    return _possibleConstructorReturn(this, (ToggleButtons.__proto__ || Object.getPrototypeOf(ToggleButtons)).apply(this, arguments));
+	  }
+
+	  _createClass(ToggleButtons, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'toggleButtons' },
+	        _react2.default.createElement(ToggleButton, { text: 'Get random' }),
+	        _react2.default.createElement(ToggleButton, { text: 'Add your own' }),
+	        _react2.default.createElement(ToggleButton, { text: 'See all' })
+	      );
+	    }
+	  }]);
+
+	  return ToggleButtons;
+	}(_react2.default.Component);
+
+	module.exports = ToggleButtons;
+
+/***/ }),
+/* 225 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 */
+
+	if (process.env.NODE_ENV !== 'production') {
+	  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+	    Symbol.for &&
+	    Symbol.for('react.element')) ||
+	    0xeac7;
+
+	  var isValidElement = function(object) {
+	    return typeof object === 'object' &&
+	      object !== null &&
+	      object.$$typeof === REACT_ELEMENT_TYPE;
+	  };
+
+	  // By explicitly using `prop-types` you are opting into new development behavior.
+	  // http://fb.me/prop-types-in-prod
+	  var throwOnDirectAccess = true;
+	  module.exports = __webpack_require__(36)(isValidElement, throwOnDirectAccess);
+	} else {
+	  // By explicitly using `prop-types` you are opting into new production behavior.
+	  // http://fb.me/prop-types-in-prod
+	  module.exports = __webpack_require__(226)();
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ }),
+/* 226 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 */
+
+	'use strict';
+
+	var emptyFunction = __webpack_require__(15);
+	var invariant = __webpack_require__(18);
+	var ReactPropTypesSecret = __webpack_require__(38);
+
+	module.exports = function() {
+	  function shim(props, propName, componentName, location, propFullName, secret) {
+	    if (secret === ReactPropTypesSecret) {
+	      // It is still safe when called from React.
+	      return;
+	    }
+	    invariant(
+	      false,
+	      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+	      'Use PropTypes.checkPropTypes() to call them. ' +
+	      'Read more at http://fb.me/use-check-prop-types'
+	    );
+	  };
+	  shim.isRequired = shim;
+	  function getShim() {
+	    return shim;
+	  };
+	  // Important!
+	  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+	  var ReactPropTypes = {
+	    array: shim,
+	    bool: shim,
+	    func: shim,
+	    number: shim,
+	    object: shim,
+	    string: shim,
+	    symbol: shim,
+
+	    any: shim,
+	    arrayOf: getShim,
+	    element: shim,
+	    instanceOf: getShim,
+	    node: shim,
+	    objectOf: getShim,
+	    oneOf: getShim,
+	    oneOfType: getShim,
+	    shape: getShim,
+	    exact: getShim
+	  };
+
+	  ReactPropTypes.checkPropTypes = emptyFunction;
+	  ReactPropTypes.PropTypes = ReactPropTypes;
+
+	  return ReactPropTypes;
+	};
+
+
+/***/ }),
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(225);
+	var content = __webpack_require__(228);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(227)(content, {});
+	var update = __webpack_require__(230)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -24079,21 +24251,21 @@
 	}
 
 /***/ }),
-/* 225 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(226)();
+	exports = module.exports = __webpack_require__(229)();
 	// imports
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Tillana);", ""]);
 
 	// module
-	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\nhtml, body {\n  font-size: 18px;\n  font-family: 'Tillana', cursive;\n  text-align: center;\n  letter-spacing: 1px;\n  color: black;\n  background-image: url(https://d1hw6n3yxknhky.cloudfront.net/011956685_prevstill.jpeg);\n  background-repeat: no-repeat;\n  background-position: center; }\n\nh1 {\n  font-family: 'Tillana', cursive; }\n\n.pull-right {\n  float: right; }\n\n.pull-left {\n  float: left; }\n\n.center {\n  margin: 0 auto; }\n\nblockquote, blockquote p {\n  color: black; }\n\n@keyframes fadeOut {\n  0% {\n    opacity: 1; }\n  25% {\n    opacity: .75; }\n  50% {\n    opacity: .5; }\n  75% {\n    opacity: .25; }\n  100% {\n    opacity: 0; } }\n\n.fadeOut {\n  -webkit-animation: fadeOut 1.5s ease-out;\n  animation: fadeOut 1.5s ease-out;\n  -webkit-animation-fill-mode: forwards;\n  animation-fill-mode: forwards;\n  -webkit-animation-iteration-count: 1;\n  animation-iteration-count: 1;\n  opacity: 1; }\n\n.quote {\n  margin: 0 auto; }\n\n.quoteButton {\n  border: 2px solid #ccc;\n  border-radius: 100%;\n  padding: 10px 12px;\n  display: inline-block; }\n\n.button.alert {\n  background-color: #00aced; }\n\n.form {\n  margin: 0 auto;\n  width: 350px; }\n\n.form input,\n.form textarea {\n  margin-bottom: 26px;\n  padding: 18px;\n  width: 100%;\n  font-size: 18px; }\n\n.button--big {\n  padding: 12px 20px;\n  width: 100%;\n  font-size: 18px;\n  line-height: 24px; }\n\n.button--big:hover {\n  cursor: pointer; }\n\n.button--blue {\n  background-color: #1da1f2;\n  border: 1px solid #1da1f2;\n  color: #fff; }\n\n.messageContainer {\n  padding: 15px;\n  background-color: green;\n  color: white;\n  opacity: 0; }\n", ""]);
+	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\nhtml, body {\n  font-size: 18px;\n  font-family: 'Tillana', cursive;\n  text-align: center;\n  letter-spacing: 1px;\n  color: black;\n  background-image: url(https://d1hw6n3yxknhky.cloudfront.net/011956685_prevstill.jpeg);\n  background-repeat: no-repeat;\n  background-position: center; }\n\nh1 {\n  font-family: 'Tillana', cursive; }\n\n.pull-right {\n  float: right; }\n\n.pull-left {\n  float: left; }\n\n.center {\n  margin: 0 auto; }\n\nblockquote, blockquote p {\n  color: black; }\n\n@keyframes fadeOut {\n  0% {\n    opacity: 1; }\n  25% {\n    opacity: .75; }\n  50% {\n    opacity: .5; }\n  75% {\n    opacity: .25; }\n  100% {\n    opacity: 0; } }\n\n.fadeOut {\n  -webkit-animation: fadeOut 1.5s ease-out;\n  animation: fadeOut 1.5s ease-out;\n  -webkit-animation-fill-mode: forwards;\n  animation-fill-mode: forwards;\n  -webkit-animation-iteration-count: 1;\n  animation-iteration-count: 1;\n  opacity: 1; }\n\n.quote {\n  margin: 0 auto; }\n\n.quoteButton {\n  border: 2px solid #ccc;\n  border-radius: 100%;\n  padding: 10px 12px;\n  display: inline-block; }\n\n.button.alert {\n  background-color: #00aced; }\n\n.form {\n  margin: 0 auto;\n  width: 350px; }\n\n.form input,\n.form textarea {\n  margin-bottom: 26px;\n  padding: 18px;\n  width: 100%;\n  font-size: 18px; }\n\n.button--big {\n  padding: 12px 20px;\n  width: 100%;\n  font-size: 18px;\n  line-height: 24px; }\n\n.button--big:hover {\n  cursor: pointer; }\n\n.button--blue {\n  background-color: #1da1f2;\n  border: 1px solid #1da1f2;\n  color: #fff; }\n\n.messageContainer {\n  padding: 15px;\n  background-color: green;\n  color: white;\n  opacity: 0; }\n\n.toggleButtons {\n  display: flex;\n  margin: 0 auto;\n  width: 66.66%; }\n  .toggleButtons div {\n    width: 33.4%; }\n  .toggleButtons .button {\n    padding: 10px 20px 11px;\n    margin: 0;\n    width: 100%;\n    background-color: #2284a1;\n    border: 1px solid #1e728c;\n    color: white;\n    font-size: 14px;\n    cursor: pointer; }\n", ""]);
 
 	// exports
 
 
 /***/ }),
-/* 226 */
+/* 229 */
 /***/ (function(module, exports) {
 
 	/*
@@ -24149,7 +24321,7 @@
 
 
 /***/ }),
-/* 227 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
