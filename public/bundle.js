@@ -150,14 +150,14 @@
 	    return {
 	      author: 'George Loaiza',
 	      quote: 'Welcome to my Quote Machine!',
-	      showForm: true
+	      view: 'random'
 	    };
 	  },
 	  getInitialState: function getInitialState() {
 	    return {
 	      author: this.props.author,
 	      quote: this.props.quote,
-	      show: this.props.show
+	      view: this.props.view
 	    };
 	  },
 	  handleNewData: function handleNewData(chosenQuote) {
@@ -169,17 +169,20 @@
 	  toggleView: function toggleView(show) {
 	    this.setState({ showForm: !this.state.showForm });
 	  },
+	  handleToggleClick: function handleToggleClick(view) {
+	    this.setState({ view: view });
+	  },
 	  render: function render() {
 	    var author = this.state.author;
 	    var quote = this.state.quote;
-	    var showForm = this.state.showForm;
+	    var view = this.state.view;
 	    var component = null;
 	    var toggleBtnTxt = null;
 
-	    if (showForm) {
+	    if (view === 'add') {
 	      component = React.createElement(_AddQuoteForm2.default, null);
 	      toggleBtnTxt = 'Show quotes';
-	    } else {
+	    } else if (view === 'random') {
 	      component = React.createElement(
 	        'div',
 	        null,
@@ -188,6 +191,8 @@
 	        React.createElement(QuoteDisplay, { author: author, quote: quote })
 	      );
 	      toggleBtnTxt = 'Add your own';
+	    } else if (view === 'all') {
+	      console.log("Show all the quotes here.. and refactor this class to use JS classes!");
 	    }
 
 	    // 2 views, either 'form' or 'quote'
@@ -202,7 +207,7 @@
 	      React.createElement(
 	        'div',
 	        null,
-	        React.createElement(ToggleButtons, null),
+	        React.createElement(ToggleButtons, { handleToggleClick: this.handleToggleClick }),
 	        component,
 	        React.createElement(
 	          'button',
@@ -24073,6 +24078,10 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
+	var _API = __webpack_require__(45);
+
+	var _API2 = _interopRequireDefault(_API);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24088,7 +24097,9 @@
 	    null,
 	    _react2.default.createElement(
 	      'button',
-	      { className: 'button button--third' },
+	      { onClick: function onClick() {
+	          console.log(props.text);
+	        }, className: 'button button--third' },
 	      props.text
 	    )
 	  );
@@ -24101,21 +24112,52 @@
 	var ToggleButtons = function (_React$Component) {
 	  _inherits(ToggleButtons, _React$Component);
 
-	  function ToggleButtons() {
+	  function ToggleButtons(props) {
 	    _classCallCheck(this, ToggleButtons);
 
-	    return _possibleConstructorReturn(this, (ToggleButtons.__proto__ || Object.getPrototypeOf(ToggleButtons)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (ToggleButtons.__proto__ || Object.getPrototypeOf(ToggleButtons)).call(this, props));
+
+	    _this.handleClick = _this.handleClick.bind(_this);
+	    return _this;
 	  }
 
+	  // we will pass the value of the clicked button up and set it as the view state
+
+
 	  _createClass(ToggleButtons, [{
+	    key: 'handleClick',
+	    value: function handleClick(view) {
+	      this.props.handleToggleClick(view);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'toggleButtons' },
-	        _react2.default.createElement(ToggleButton, { text: 'Get random' }),
-	        _react2.default.createElement(ToggleButton, { text: 'Add your own' }),
-	        _react2.default.createElement(ToggleButton, { text: 'See all' })
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: function onClick() {
+	              _this2.handleClick('random');
+	            }, className: 'button button--third' },
+	          'Get random'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: function onClick() {
+	              _this2.handleClick('add');
+	            }, className: 'button button--third' },
+	          'Add Quote'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: function onClick() {
+	              _this2.handleClick('all');
+	            }, className: 'button button--third' },
+	          'View All'
+	        )
 	      );
 	    }
 	  }]);

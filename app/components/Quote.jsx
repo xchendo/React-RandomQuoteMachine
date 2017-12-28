@@ -13,14 +13,14 @@ let Quote = React.createClass({
     return {
     author: 'George Loaiza',
     quote: 'Welcome to my Quote Machine!',
-    showForm: true
+    view: 'random'
     };
   },
   getInitialState: function(){
     return{
       author: this.props.author,
       quote: this.props.quote,
-      show: this.props.show
+      view: this.props.view
     };
   },
   handleNewData: function(chosenQuote){
@@ -32,19 +32,24 @@ let Quote = React.createClass({
   toggleView: function(show) {
     this.setState({showForm: !this.state.showForm});
   },
+  handleToggleClick: function(view) {
+    this.setState({view});
+  },
   render: function(){
     let author = this.state.author;
     let quote = this.state.quote;
-    let showForm = this.state.showForm;
+    let view = this.state.view;
     let component = null;
     let toggleBtnTxt = null;
 
-    if (showForm) {
+    if (view === 'add') {
       component = <AddQuoteForm/>;
       toggleBtnTxt = 'Show quotes';
-    } else {
+    } else if (view === 'random') {
       component = <div> <QuoteButtons onNewData = {this.handleNewData}/><QuoteDisplay author = {author} quote = {quote}/></div> ;
       toggleBtnTxt = 'Add your own';
+    } else if (view === 'all') {
+      console.log("Show all the quotes here.. and refactor this class to use JS classes!");
     }
 
     // 2 views, either 'form' or 'quote'
@@ -52,7 +57,7 @@ let Quote = React.createClass({
       <div className = "row">
         <h1 className = "center">Motivational Quotes</h1>
         <div>
-          <ToggleButtons/>
+          <ToggleButtons handleToggleClick={this.handleToggleClick}/>
           {component}
           <button type="button"  className="button button--blue" onClick = {this.toggleView}>{toggleBtnTxt}</button>
         </div>
