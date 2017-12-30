@@ -50,7 +50,7 @@ exports.getSpecificQuote = (req, res) => {
   });
 }
 
-// Make this one internal only, so as to not overload the server
+// TODO: Add pagination (somehow..)
 exports.getAllQuotes = (req,res) => {
   Quote.find( (err, data) => {
     if (err) { next(err); }

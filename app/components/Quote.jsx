@@ -2,10 +2,9 @@ const React = require('react');
 const QuoteDisplay = require('QuoteDisplay');
 const QuoteButtons = require('QuoteButtons');
 const ToggleButtons = require('ToggleButtons');
-
-import AddQuoteForm from 'AddQuoteForm';
-import Flash from 'Flash';
-import API from 'API';
+const AllQuotes = require('AllQuotes');
+const AddQuoteForm= require('AddQuoteForm');
+const Flash = require('Flash');
 
 
 let Quote = React.createClass({
@@ -49,7 +48,7 @@ let Quote = React.createClass({
       component = <div> <QuoteButtons onNewData = {this.handleNewData}/><QuoteDisplay author = {author} quote = {quote}/></div> ;
       toggleBtnTxt = 'Add your own';
     } else if (view === 'all') {
-      console.log("Show all the quotes here.. and refactor this class to use JS classes!");
+      component = <AllQuotes/>;
     }
 
     // 2 views, either 'form' or 'quote'

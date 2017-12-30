@@ -23,5 +23,8 @@ module.exports = {
     return axios.post('/api/2').then((resp) => {
       console.log(resp.data);
     });
+  },
+  getAllQuotes() {
+    return axios.post('api/all');
   }
 }
