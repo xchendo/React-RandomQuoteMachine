@@ -6,7 +6,7 @@ function AddQuoteForm() {
   function handleSubmit(){
     let text = document.getElementsByName("quoteText")[0].value;
     let author = document.getElementsByName("quoteAuthor")[0].value;
-    //api.getSpecificQuote();
+    
     api.addQuote(author, text).then( (resp) => {
       Utility.flash(resp.data);
     });

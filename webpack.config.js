@@ -23,9 +23,7 @@ module.exports = {
     root: __dirname,
     alias:{
       Quote: 'app/components/Quote.jsx',
-      QuoteButtons: 'app/components/QuoteButtons.jsx',
       QuoteDisplay: 'app/components/QuoteDisplay.jsx',
-      QuotesObject: 'app/components/QuotesObject.jsx',
       AddQuoteForm: 'app/components/AddQuoteForm.jsx',
       AllQuotes: 'app/components/AllQuotes.jsx',
       ToggleButtons: 'app/components/ToggleButtons.jsx',

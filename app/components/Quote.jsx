@@ -1,70 +1,83 @@
-const React = require('react');
-const QuoteDisplay = require('QuoteDisplay');
-const QuoteButtons = require('QuoteButtons');
-const ToggleButtons = require('ToggleButtons');
-const AllQuotes = require('AllQuotes');
-const AddQuoteForm= require('AddQuoteForm');
-const Flash = require('Flash');
+import React from 'react';
+import QuoteDisplay from 'QuoteDisplay';
+import ToggleButtons from 'ToggleButtons';
+import AllQuotes from 'AllQuotes';
+import AddQuoteForm from 'AddQuoteForm';
+import Flash from 'Flash';
+import api from 'API';
 
 
-let Quote = React.createClass({
-  getDefaultProps: function(){
-    return {
-    author: 'George Loaiza',
-    quote: 'Welcome to my Quote Machine!',
-    view: 'random'
-    };
-  },
-  getInitialState: function(){
-    return{
-      author: this.props.author,
-      quote: this.props.quote,
-      view: this.props.view
-    };
-  },
-  handleNewData: function(chosenQuote){
+class Quote extends React.Component {
+  constructor (props) {
+    super(props);
+
+    // set default state
+    this.state = {
+      author: 'George Loaiza',
+      quote: 'Welcome to my Quote Machine!',
+      view: 'random'
+    }
+
+    this.handleToggleClick = this.handleToggleClick.bind(this);
+  }
+
+  handleNewData (chosenQuote){
     this.setState({
       author: chosenQuote.author,
       quote: chosenQuote.text
     });
-  },
-  toggleView: function(show) {
+  }
+
+  toggleView (show) {
     this.setState({showForm: !this.state.showForm});
-  },
-  handleToggleClick: function(view) {
-    this.setState({view});
-  },
-  render: function(){
+  }
+
+  handleToggleClick (view) {
+    if (view === 'random') {
+
+      // get a new quote and update the state
+      api.getRandomQuote().then(resp => {
+        this.setState({
+          view,
+          author: resp.data.author,
+          quote: resp.data.text
+        });
+      });
+    } else {
+      this.setState({view});
+    }
+  }
+  
+  render() {
     let author = this.state.author;
     let quote = this.state.quote;
     let view = this.state.view;
-    let component = null;
+    let shownComponent = null;
     let toggleBtnTxt = null;
 
+    // 3 views, add, all and random
     if (view === 'add') {
-      component = <AddQuoteForm/>;
+      shownComponent = <AddQuoteForm/>;
       toggleBtnTxt = 'Show quotes';
     } else if (view === 'random') {
-      component = <div> <QuoteButtons onNewData = {this.handleNewData}/><QuoteDisplay author = {author} quote = {quote}/></div> ;
+      shownComponent = <QuoteDisplay author = {author} quote = {quote}/>;
       toggleBtnTxt = 'Add your own';
     } else if (view === 'all') {
-      component = <AllQuotes/>;
+      shownComponent = <AllQuotes/>;
     }
 
-    // 2 views, either 'form' or 'quote'
     return(
       <div className = "row">
         <h1 className = "center">Motivational Quotes</h1>
         <div>
           <ToggleButtons handleToggleClick={this.handleToggleClick}/>
-          {component}
-          <button type="button"  className="button button--blue" onClick = {this.toggleView}>{toggleBtnTxt}</button>
+          {shownComponent}
         </div>
         <Flash/>
       </div>
     );
   }
 
-});
+};
 
 module.exports = Quote;
