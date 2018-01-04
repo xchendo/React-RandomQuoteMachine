@@ -70,7 +70,7 @@ class Quote extends React.Component {
       <div className = "row">
         <h1 className = "center">Motivational Quotes</h1>
         <div>
-          <ToggleButtons handleToggleClick={this.handleToggleClick}/>
+          <ToggleButtons active={view} handleToggleClick={this.handleToggleClick}/>
           {shownComponent}
         </div>
         <Flash/>

@@ -244,7 +244,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          _react2.default.createElement(_ToggleButtons2.default, { handleToggleClick: this.handleToggleClick }),
+	          _react2.default.createElement(_ToggleButtons2.default, { active: view, handleToggleClick: this.handleToggleClick }),
 	          shownComponent
 	        ),
 	        _react2.default.createElement(_Flash2.default, null)
@@ -5090,25 +5090,6 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	// React stateless functional component
-	function ToggleButton(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'button',
-	      { onClick: function onClick() {
-	          console.log(props.text);
-	        }, className: 'button button--third' },
-	      props.text
-	    )
-	  );
-	}
-
-	ToggleButton.propTypes = {
-	  text: _propTypes2.default.string
-	};
-
 	var ToggleButtons = function (_React$Component) {
 	  _inherits(ToggleButtons, _React$Component);
 
@@ -5141,21 +5122,21 @@
 	          'button',
 	          { onClick: function onClick() {
 	              _this2.handleClick('random');
-	            }, className: 'button button--third' },
+	            }, className: 'button button--third ' + (this.props.active === 'random' ? 'button--active' : '') },
 	          'Get random'
 	        ),
 	        _react2.default.createElement(
 	          'button',
 	          { onClick: function onClick() {
 	              _this2.handleClick('add');
-	            }, className: 'button button--third' },
+	            }, className: 'button button--third ' + (this.props.active === 'add' ? 'button--active' : '') },
 	          'Add Quote'
 	        ),
 	        _react2.default.createElement(
 	          'button',
 	          { onClick: function onClick() {
 	              _this2.handleClick('all');
-	            }, className: 'button button--third' },
+	            }, className: 'button button--third ' + (this.props.active === 'all' ? 'button--active' : '') },
 	          'View All'
 	        )
 	      );
@@ -24330,7 +24311,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Tillana);", ""]);
 
 	// module
-	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\nhtml, body {\n  font-size: 18px;\n  font-family: 'Tillana', cursive;\n  text-align: center;\n  letter-spacing: 1px;\n  color: black; }\n\nh1 {\n  font-family: 'Tillana', cursive; }\n\n.pull-right {\n  float: right; }\n\n.pull-left {\n  float: left; }\n\n.center {\n  margin: 0 auto; }\n\nblockquote, blockquote p {\n  color: black; }\n\n@keyframes fadeOut {\n  0% {\n    opacity: 1; }\n  25% {\n    opacity: .75; }\n  50% {\n    opacity: .5; }\n  75% {\n    opacity: .25; }\n  100% {\n    opacity: 0; } }\n\n.fadeOut {\n  -webkit-animation: fadeOut 1.5s ease-out;\n  animation: fadeOut 1.5s ease-out;\n  -webkit-animation-fill-mode: forwards;\n  animation-fill-mode: forwards;\n  -webkit-animation-iteration-count: 1;\n  animation-iteration-count: 1;\n  opacity: 1; }\n\n.quote {\n  margin: 0 auto; }\n\n.form {\n  margin: 0 auto;\n  width: 350px; }\n\n.form input,\n.form textarea {\n  margin-bottom: 26px;\n  padding: 18px;\n  width: 100%;\n  font-size: 18px; }\n\n.button--big {\n  padding: 12px 20px;\n  width: 100%;\n  font-size: 18px;\n  line-height: 24px; }\n\n.button--big:hover {\n  cursor: pointer; }\n\n.button--blue {\n  background-color: #1da1f2;\n  border: 1px solid #1da1f2;\n  color: #fff; }\n\n.messageContainer {\n  padding: 15px;\n  background-color: green;\n  color: white;\n  opacity: 0; }\n\n.toggleButtons {\n  display: flex;\n  margin: 0 auto;\n  width: 66.66%; }\n  .toggleButtons div {\n    width: 33.33%; }\n  .toggleButtons .button {\n    padding: 10px 20px 11px;\n    margin: 0;\n    width: 100%;\n    background-color: #2284a1;\n    border: 1px solid #1e728c;\n    color: white;\n    font-size: 14px;\n    cursor: pointer; }\n\n/* Small Devices, Tablets */\n@media only screen and (max-width: 768px) {\n  .toggleButtons {\n    width: 90%; } }\n", ""]);
+	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\nhtml, body {\n  font-size: 18px;\n  font-family: 'Tillana', cursive;\n  text-align: center;\n  letter-spacing: 1px;\n  color: black; }\n\nh1 {\n  font-family: 'Tillana', cursive; }\n\n.pull-right {\n  float: right; }\n\n.pull-left {\n  float: left; }\n\n.center {\n  margin: 0 auto; }\n\nblockquote, blockquote p {\n  color: black; }\n\n@keyframes fadeOut {\n  0% {\n    opacity: 1; }\n  25% {\n    opacity: .75; }\n  50% {\n    opacity: .5; }\n  75% {\n    opacity: .25; }\n  100% {\n    opacity: 0; } }\n\n.fadeOut {\n  -webkit-animation: fadeOut 1.5s ease-out;\n  animation: fadeOut 1.5s ease-out;\n  -webkit-animation-fill-mode: forwards;\n  animation-fill-mode: forwards;\n  -webkit-animation-iteration-count: 1;\n  animation-iteration-count: 1;\n  opacity: 1; }\n\n.quote {\n  margin: 0 auto; }\n\n.form {\n  margin: 0 auto;\n  width: 350px; }\n\n.form input,\n.form textarea {\n  margin-bottom: 26px;\n  padding: 18px;\n  width: 100%;\n  font-size: 18px; }\n\n.button--big {\n  padding: 12px 20px;\n  width: 100%;\n  font-size: 18px;\n  line-height: 24px; }\n\n.button--big:hover {\n  cursor: pointer; }\n\n.button--blue {\n  background-color: #1da1f2;\n  border: 1px solid #1da1f2;\n  color: #fff; }\n\n.button--active {\n  background-color: #0001f2; }\n\n.messageContainer {\n  padding: 15px;\n  background-color: green;\n  color: white;\n  opacity: 0; }\n\n.toggleButtons {\n  display: flex;\n  margin: 0 auto  15px auto;\n  width: 66.66%; }\n  .toggleButtons div {\n    width: 33.33%; }\n  .toggleButtons .button {\n    padding: 10px 20px 11px;\n    margin: 0;\n    width: 100%;\n    background-color: #2284a1;\n    border: 1px solid #1e728c;\n    color: white;\n    font-size: 14px;\n    cursor: pointer; }\n    .toggleButtons .button--active {\n      background-color: #1da1f2;\n      border: 1px solid #1da1f2; }\n\n/* Small Devices, Tablets */\n@media only screen and (max-width: 768px) {\n  .toggleButtons {\n    width: 90%; } }\n", ""]);
 
 	// exports
 
