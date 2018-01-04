@@ -1,3 +1,23 @@
 .quote{
   margin: 0 auto;
 }
+
+blockquote{
+  & p {
+    font-size: 4rem;
+  }
+
+  & cite {
+    font-size: 2.5rem;
+    display: flex;
+    flex-direction: row-reverse;
+
+    &::after {
+      content: ' ~ ';
+    }
+  }
+}
+
+.quote--icon {
+  font-size: 4rem;
+}
