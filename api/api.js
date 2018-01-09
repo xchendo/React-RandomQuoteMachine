@@ -25,6 +25,6 @@ module.exports = {
     });
   },
   getAllQuotes() {
-    return axios.post('api/all');
+    return axios.post('api/all/page/2');
   }
 }

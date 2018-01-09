@@ -16,19 +16,23 @@ const status = {
 };
 
 
-exports.addQuote = (req, res) => {
-  let test = {
-    text: req.body.text,
-    author: req.body.author
-  };
-  
-  const quote = new Quote(test).save(function (err, req1, res2, next) {
+exports.addQuote = async (req, res) => { // put async in front of the function that is making a request
+  //async await boi
+  const quote = new Quote(req.body);
+  await quote.save(); // put await in the code that returns the promise
+  res.send({
+    status: 'Success',
+    text: 'Successfully added your quote. Thanks for sharing!'
+  });
+
+  /*
+  const quote = new Quote(req.body).save(function (err, req1, res2, next) {
     if (err) { console.log(err); next(err);}
     res.send({
       status: 'Success',
       text: 'Successfully added your quote. Thanks for sharing!'
     }); 
-  });
+  });*/
 }
 
 exports.getRandomQuote = (req, res) => {
@@ -52,8 +56,14 @@ exports.getSpecificQuote = (req, res) => {
 
 // TODO: Add pagination (somehow..)
 exports.getAllQuotes = (req,res) => {
-  Quote.find( (err, data) => {
-    if (err) { next(err); }
-    res.send(data);
-  });
+  const page = req.params.page || 1;
+  const limit = 5;
+  const skip = (page * limit) - limit;
+  Quote
+    .find( (err, data) => {
+      if (err) { next(err); }
+      res.send(data);
+    })
+    .skip(skip)
+    .limit(limit)
 }

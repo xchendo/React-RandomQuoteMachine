@@ -22517,7 +22517,7 @@
 	    });
 	  },
 	  getAllQuotes: function getAllQuotes() {
-	    return _axios2.default.post('api/all');
+	    return _axios2.default.post('api/all/page/2');
 	  }
 	};
 

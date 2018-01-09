@@ -1,6 +1,8 @@
 // start up the database
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+
+// import environmental variables from our variables.env file
 require('dotenv').config({path:'variables.env'});
 
 //import quote schema
@@ -8,9 +10,10 @@ require('./models/Quote');
 
 
 // Connect dat DB
-
-// TODO: get db host from variables.env
 mongoose.connect(process.env.DATABASE);
+
+// tell Mongoose to use es6 promises
+mongoose.Promise = global.Promise;
 mongoose.connection.on('error', (err) => {
   console.error(err.message);
 });
@@ -35,7 +38,9 @@ app.use(function (req, res, next){
 
 app.use(express.static('public'));
 
+// Handle our own routes
 app.use('/api', routes);
+
 
 app.listen(PORT, function() {
   console.log(process.env.DATABASE);
