@@ -5,8 +5,8 @@ import api from 'API';
 function quote (props) {
   return (
     <div className="list__quote">
-      <div className="list__quote__author">props.author</div>
       <div className="list__quote__text">props.text</div>
+      <div className="list__quote__author">props.author</div>
     </div>
   );
 }

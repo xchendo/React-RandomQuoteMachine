@@ -24084,13 +24084,13 @@
 	    { className: 'list__quote' },
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'list__quote__author' },
-	      'props.author'
+	      { className: 'list__quote__text' },
+	      'props.text'
 	    ),
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'list__quote__text' },
-	      'props.text'
+	      { className: 'list__quote__author' },
+	      'props.author'
 	    )
 	  );
 	}
