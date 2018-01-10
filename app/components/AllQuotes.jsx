@@ -1,36 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import api from 'API';
-
-function quote (props) {
-  return (
-    <div className="list__quote">
-      <div className="list__quote__text">props.text</div>
-      <div className="list__quote__author">props.author</div>
-    </div>
-  );
-}
+import Pagination from 'Pagination';
 
 class AllQuotes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
-      data: null
+      data: null,
+      page: 1
     };
 
     // binding the functions
     this.createQuoteList = this.createQuoteList.bind(this);
+    //this.handlePage = this.handlePage.bind(this);
   }
 
   // hit the all quotes endpoint, and update the state with the data
   componentDidMount() {
-    api.getAllQuotes().then((resp) =>{
+    console.log("mounting");
+    api.getAllQuotes(this.state.page).then((resp) => {
+      console.log(resp);
       this.setState({
         loading: false,
-        data: resp.data
+        data: resp.data,
       });
     })
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("should component update");
+    return true;
   }
   
   createQuoteList() {
@@ -49,25 +50,44 @@ class AllQuotes extends React.Component {
     })
   }
 
+  handlePage(page) {
+    return this.setState({
+      page: page
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.page != this.state.page) {
+      api.getAllQuotes(this.state.page).then((resp) => {
+        console.log(resp);
+        this.setState({
+          loading: false,
+          data: resp.data,
+        });
+      })
+    }
+    console.log("did update");
+  }
+
   render() {
     let loading = this.state.loading;
     let quotes = this.state.data;
+    let component = <div> Error fetching all quotes!</div>;
+    let page = this.state.page;
+    console.log("render");
 
     if (loading) {
-      return (
-        <div>Loading..</div>
-      )
+      component = <div>Loading..</div>;
     } else if (!loading && quotes) {
-      return (
-       <div>
-         {this.createQuoteList()}
-       </div>
-      );
-    } else {
-      return (
-        <div> Error fetching all quotes!</div>
-      )
+      component = <div>{this.createQuoteList()}</div>;
     }
+
+    return (
+      <div>
+        <Pagination page={page} getPage={this.handlePage.bind(this)}/>
+        {component}
+      </div>
+    )
   }
 }
 

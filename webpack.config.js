@@ -28,6 +28,7 @@ module.exports = {
       AllQuotes: 'app/components/AllQuotes.jsx',
       ToggleButtons: 'app/components/ToggleButtons.jsx',
       Flash:        'app/components/Flash.jsx',
+      Pagination:        'app/components/Pagination.jsx',
       API: 'api/api.js',
       Utility: 'utility.js',
       applicationStyles: 'app/styles/app.scss'

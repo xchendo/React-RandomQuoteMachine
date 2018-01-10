@@ -114,7 +114,7 @@
 	//$(document).foundation();
 
 	//Load css
-	__webpack_require__(226);
+	__webpack_require__(227);
 
 	ReactDOM.render(React.createElement(_Quote2.default, null), document.getElementById('app'));
 
@@ -142,11 +142,11 @@
 
 	var _AllQuotes2 = _interopRequireDefault(_AllQuotes);
 
-	var _AddQuoteForm = __webpack_require__(223);
+	var _AddQuoteForm = __webpack_require__(224);
 
 	var _AddQuoteForm2 = _interopRequireDefault(_AddQuoteForm);
 
-	var _Flash = __webpack_require__(225);
+	var _Flash = __webpack_require__(226);
 
 	var _Flash2 = _interopRequireDefault(_Flash);
 
@@ -22516,8 +22516,8 @@
 	      console.log(resp.data);
 	    });
 	  },
-	  getAllQuotes: function getAllQuotes() {
-	    return _axios2.default.post('api/all/page/2');
+	  getAllQuotes: function getAllQuotes(page) {
+	    return _axios2.default.post('api/all/page/' + page);
 	  }
 	};
 
@@ -24070,6 +24070,10 @@
 
 	var _API2 = _interopRequireDefault(_API);
 
+	var _Pagination = __webpack_require__(223);
+
+	var _Pagination2 = _interopRequireDefault(_Pagination);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24077,23 +24081,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	function quote(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'list__quote' },
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'list__quote__text' },
-	      'props.text'
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'list__quote__author' },
-	      'props.author'
-	    )
-	  );
-	}
 
 	var AllQuotes = function (_React$Component) {
 	  _inherits(AllQuotes, _React$Component);
@@ -24105,11 +24092,13 @@
 
 	    _this.state = {
 	      loading: true,
-	      data: null
+	      data: null,
+	      page: 1
 	    };
 
 	    // binding the functions
 	    _this.createQuoteList = _this.createQuoteList.bind(_this);
+	    //this.handlePage = this.handlePage.bind(this);
 	    return _this;
 	  }
 
@@ -24121,12 +24110,20 @@
 	    value: function componentDidMount() {
 	      var _this2 = this;
 
-	      _API2.default.getAllQuotes().then(function (resp) {
+	      console.log("mounting");
+	      _API2.default.getAllQuotes(this.state.page).then(function (resp) {
+	        console.log(resp);
 	        _this2.setState({
 	          loading: false,
 	          data: resp.data
 	        });
 	      });
+	    }
+	  }, {
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(nextProps, nextState) {
+	      console.log("should component update");
+	      return true;
 	    }
 	  }, {
 	    key: 'createQuoteList',
@@ -24150,30 +24147,61 @@
 	      });
 	    }
 	  }, {
+	    key: 'handlePage',
+	    value: function handlePage(page) {
+	      return this.setState({
+	        page: page
+	      });
+	    }
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate(prevProps, prevState) {
+	      var _this3 = this;
+
+	      if (prevState.page != this.state.page) {
+	        _API2.default.getAllQuotes(this.state.page).then(function (resp) {
+	          console.log(resp);
+	          _this3.setState({
+	            loading: false,
+	            data: resp.data
+	          });
+	        });
+	      }
+	      console.log("did update");
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var loading = this.state.loading;
 	      var quotes = this.state.data;
+	      var component = _react2.default.createElement(
+	        'div',
+	        null,
+	        ' Error fetching all quotes!'
+	      );
+	      var page = this.state.page;
+	      console.log("render");
 
 	      if (loading) {
-	        return _react2.default.createElement(
+	        component = _react2.default.createElement(
 	          'div',
 	          null,
 	          'Loading..'
 	        );
 	      } else if (!loading && quotes) {
-	        return _react2.default.createElement(
+	        component = _react2.default.createElement(
 	          'div',
 	          null,
 	          this.createQuoteList()
 	        );
-	      } else {
-	        return _react2.default.createElement(
-	          'div',
-	          null,
-	          ' Error fetching all quotes!'
-	        );
 	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_Pagination2.default, { page: page, getPage: this.handlePage.bind(this) }),
+	        component
+	      );
 	    }
 	  }]);
 
@@ -24192,11 +24220,52 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * Contains Prev/Next button, page number w/ count (Page {x} of {total}) - {count} total results
+	 * On each prev/next press, update the state's page number and on componentDidMount make the request
+	 * for that page, our api will handle the actual pagination
+	 */
+	var Pagination = function Pagination(props) {
+	  var page = props.page;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'pagination' },
+	    _react2.default.createElement(
+	      'button',
+	      { className: 'pagination__prev', onClick: function onClick() {
+	          props.getPage(page - 1);
+	        } },
+	      'Prev'
+	    ),
+	    _react2.default.createElement(
+	      'button',
+	      { className: 'pagination__next', onClick: function onClick() {
+	          props.getPage(page + 1);
+	        } },
+	      'Next'
+	    )
+	  );
+	};
+
+	module.exports = Pagination;
+
+/***/ }),
+/* 224 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(6);
+
+	var _react2 = _interopRequireDefault(_react);
+
 	var _API = __webpack_require__(195);
 
 	var _API2 = _interopRequireDefault(_API);
 
-	var _Utility = __webpack_require__(224);
+	var _Utility = __webpack_require__(225);
 
 	var _Utility2 = _interopRequireDefault(_Utility);
 
@@ -24231,7 +24300,7 @@
 	module.exports = AddQuoteForm;
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -24250,7 +24319,7 @@
 	};
 
 /***/ }),
-/* 225 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24265,7 +24334,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Flash = function Flash() {
+	var Flash = function Flash(props) {
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'messageContainer' },
@@ -24277,16 +24346,16 @@
 	module.exports = Flash;
 
 /***/ }),
-/* 226 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(227);
+	var content = __webpack_require__(228);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(229)(content, {});
+	var update = __webpack_require__(230)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -24303,10 +24372,10 @@
 	}
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(228)();
+	exports = module.exports = __webpack_require__(229)();
 	// imports
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Tillana);", ""]);
 
@@ -24317,7 +24386,7 @@
 
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports) {
 
 	/*
@@ -24373,7 +24442,7 @@
 
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*

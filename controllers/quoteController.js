@@ -24,28 +24,21 @@ exports.addQuote = async (req, res) => { // put async in front of the function t
     status: 'Success',
     text: 'Successfully added your quote. Thanks for sharing!'
   });
-
-  /*
-  const quote = new Quote(req.body).save(function (err, req1, res2, next) {
-    if (err) { console.log(err); next(err);}
-    res.send({
-      status: 'Success',
-      text: 'Successfully added your quote. Thanks for sharing!'
-    }); 
-  });*/
 }
 
-exports.getRandomQuote = (req, res) => {
-  Quote.count().exec( (err, count) => {
-    let random = Math.floor(Math.random() * count);
-    Quote.findOne().skip(random).exec( (err, response) => {
-      res.send(response);
-    });
-  });
+exports.getRandomQuote = async (req, res) => {
+  const count = await Quote.count()
+    .exec();
+  let random = Math.floor(Math.random() * count);
+  
+  const quote =  await Quote.findOne()
+    .skip(random)
+    .exec();
+
+  res.send(quote);
 }
 
 exports.getSpecificQuote = (req, res) => {
-  console.log(req.params.id);
   Quote.findOne({
     _id: req.params.id
   }, (err, quote) => {
@@ -54,16 +47,13 @@ exports.getSpecificQuote = (req, res) => {
   });
 }
 
-// TODO: Add pagination (somehow..)
-exports.getAllQuotes = (req,res) => {
+
+exports.getAllQuotes = async (req,res) => {
   const page = req.params.page || 1;
-  const limit = 5;
+  const limit = 3;
   const skip = (page * limit) - limit;
-  Quote
-    .find( (err, data) => {
-      if (err) { next(err); }
-      res.send(data);
-    })
+  const quote = await Quote.find()
     .skip(skip)
-    .limit(limit)
+    .limit(limit);
+  res.send(quote);
 }

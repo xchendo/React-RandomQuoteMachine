@@ -24,7 +24,7 @@ module.exports = {
       console.log(resp.data);
     });
   },
-  getAllQuotes() {
-    return axios.post('api/all/page/2');
+  getAllQuotes(page) {
+    return axios.post(`api/all/page/${page}`);
   }
 }
