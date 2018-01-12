@@ -9,7 +9,9 @@ class AllQuotes extends React.Component {
     this.state = {
       loading: true,
       data: null,
-      page: 1
+      page: 1,
+      count: 0,
+      pages: 0
     };
 
     // binding the functions
@@ -19,19 +21,21 @@ class AllQuotes extends React.Component {
 
   // hit the all quotes endpoint, and update the state with the data
   componentDidMount() {
-    console.log("mounting");
     api.getAllQuotes(this.state.page).then((resp) => {
       console.log(resp);
       this.setState({
         loading: false,
-        data: resp.data,
+        data: resp.data.quotes,
+        pages: resp.data.pages,
+        count: resp.data.count
       });
     })
   }
 
+
+
   shouldComponentUpdate(nextProps, nextState) {
-    console.log("should component update");
-    return true;
+    return this.state.loading != nextState.loading || this.state.page !=nextState.page;
   }
   
   createQuoteList() {
@@ -59,14 +63,14 @@ class AllQuotes extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.page != this.state.page) {
       api.getAllQuotes(this.state.page).then((resp) => {
-        console.log(resp);
         this.setState({
           loading: false,
-          data: resp.data,
+          data: resp.data.quotes,
+          pages: resp.data.pages,
+          count: resp.data.count
         });
       })
     }
-    console.log("did update");
   }
 
   render() {
@@ -74,7 +78,8 @@ class AllQuotes extends React.Component {
     let quotes = this.state.data;
     let component = <div> Error fetching all quotes!</div>;
     let page = this.state.page;
-    console.log("render");
+    let pages = this.state.pages;
+    let count = this.state.count;
 
     if (loading) {
       component = <div>Loading..</div>;
@@ -84,7 +89,7 @@ class AllQuotes extends React.Component {
 
     return (
       <div>
-        <Pagination page={page} getPage={this.handlePage.bind(this)}/>
+        <Pagination page={page} count={count} pages={pages} getPage={this.handlePage.bind(this)}/>
         {component}
       </div>
     )

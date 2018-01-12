@@ -7,9 +7,13 @@ import React from 'react';
  */
 const Pagination = (props) => {
   let page = props.page;
+  let pages = props.pages;
+  let count = props.count;
+  console.log(props);
   return (
     <div className='pagination'>
       <button className="pagination__prev" onClick={() => { props.getPage(page-1) }}>Prev</button>
+      <span className='pagination__current_page'> Page {page} of {pages} - total results </span>
       <button className="pagination__next" onClick={() => { props.getPage(page+1) }}>Next</button>
     </div>
   )

@@ -47,13 +47,23 @@ exports.getSpecificQuote = (req, res) => {
   });
 }
 
-
+// return 5 quotes and the total quotes count
 exports.getAllQuotes = async (req,res) => {
   const page = req.params.page || 1;
-  const limit = 3;
+  const limit = 5;
   const skip = (page * limit) - limit;
-  const quote = await Quote.find()
+
+  const quotePromise = Quote.find()
     .skip(skip)
     .limit(limit);
-  res.send(quote);
+
+  const quoteCount = Quote.count();
+  const [quotes, count] = await Promise.all([quotePromise, quoteCount]);
+
+  const pages = Math.ceil(count / limit);
+  res.send({
+    pages,
+    count,
+    quotes
+  });
 }

@@ -24093,7 +24093,9 @@
 	    _this.state = {
 	      loading: true,
 	      data: null,
-	      page: 1
+	      page: 1,
+	      count: 0,
+	      pages: 0
 	    };
 
 	    // binding the functions
@@ -24110,20 +24112,20 @@
 	    value: function componentDidMount() {
 	      var _this2 = this;
 
-	      console.log("mounting");
 	      _API2.default.getAllQuotes(this.state.page).then(function (resp) {
 	        console.log(resp);
 	        _this2.setState({
 	          loading: false,
-	          data: resp.data
+	          data: resp.data.quotes,
+	          pages: resp.data.pages,
+	          count: resp.data.count
 	        });
 	      });
 	    }
 	  }, {
 	    key: 'shouldComponentUpdate',
 	    value: function shouldComponentUpdate(nextProps, nextState) {
-	      console.log("should component update");
-	      return true;
+	      return this.state.loading != nextState.loading || this.state.page != nextState.page;
 	    }
 	  }, {
 	    key: 'createQuoteList',
@@ -24160,14 +24162,14 @@
 
 	      if (prevState.page != this.state.page) {
 	        _API2.default.getAllQuotes(this.state.page).then(function (resp) {
-	          console.log(resp);
 	          _this3.setState({
 	            loading: false,
-	            data: resp.data
+	            data: resp.data.quotes,
+	            pages: resp.data.pages,
+	            count: resp.data.count
 	          });
 	        });
 	      }
-	      console.log("did update");
 	    }
 	  }, {
 	    key: 'render',
@@ -24180,7 +24182,8 @@
 	        ' Error fetching all quotes!'
 	      );
 	      var page = this.state.page;
-	      console.log("render");
+	      var pages = this.state.pages;
+	      var count = this.state.count;
 
 	      if (loading) {
 	        component = _react2.default.createElement(
@@ -24199,7 +24202,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_Pagination2.default, { page: page, getPage: this.handlePage.bind(this) }),
+	        _react2.default.createElement(_Pagination2.default, { page: page, count: count, pages: pages, getPage: this.handlePage.bind(this) }),
 	        component
 	      );
 	    }
@@ -24229,6 +24232,9 @@
 	 */
 	var Pagination = function Pagination(props) {
 	  var page = props.page;
+	  var pages = props.pages;
+	  var count = props.count;
+	  console.log(props);
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'pagination' },
@@ -24238,6 +24244,15 @@
 	          props.getPage(page - 1);
 	        } },
 	      'Prev'
+	    ),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'pagination__current_page' },
+	      ' Page ',
+	      page,
+	      ' of ',
+	      pages,
+	      ' - total results '
 	    ),
 	    _react2.default.createElement(
 	      'button',
