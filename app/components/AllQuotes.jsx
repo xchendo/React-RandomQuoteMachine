@@ -55,6 +55,7 @@ class AllQuotes extends React.Component {
   }
 
   handlePage(page) {
+    console.log(page);
     return this.setState({
       page: page
     });
@@ -67,7 +68,7 @@ class AllQuotes extends React.Component {
           loading: false,
           data: resp.data.quotes,
           pages: resp.data.pages,
-          count: resp.data.count
+          count: resp.data.count,
         });
       })
     }

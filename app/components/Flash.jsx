@@ -1,14 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-
-const Flash = (props) => {
-  return (
+const Flash = () =>
+  (
     <div className="messageContainer">
-      <h2 className="messageContainer__status"></h2>
-      <p className="messageContainer__text"></p>
+      <p className="messageContainer__status" />
+      <p className="messageContainer__text" />
     </div>
-  )
-} 
+  );
+
 
 module.exports = Flash;
