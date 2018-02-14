@@ -12,52 +12,80 @@ const defaultProps = {
   count: null,
 };
 
-const Pagination = (props) => {
-  const {
-    page,
-    pages,
-    count,
-  } = props;
-
-  let backBtn = null;
-  let forwardBtn = null;
-
-  if (page > 1) {
-    backBtn =
-      (
-        <button className="pagination__prev" onClick={() => { props.getPage(page - 1); }}>
-          Prev
-        </button>
-      );
-  }
-
-  if (page < pages) {
-    forwardBtn =
-    (
-      <button className="pagination__next" onClick={() => { props.getPage(page + 1); }}>
-        Next
-      </button>
-    );
-  }
-  return (
-    <div className="pagination">
-      {backBtn}
-      <span className="pagination__current_page">
-        Page {page} of {pages} - {count} total results
-      </span>
-      {forwardBtn}
-    </div>
-  );
-};
-
-Pagination.propTypes = {
+const propTypes = {
   page: PropTypes.number,
   pages: PropTypes.number,
   count: PropTypes.number,
-  getPage: PropTypes.func.isRequired,
+  onChangePage: PropTypes.func.isRequired,
 
 };
 
+class Pagination extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { page: defaultProps.page };
+  }
+
+  componentWillMount() {
+    // set page if items array isn't empty
+    this.setPage(this.props.page);
+  }
+
+  componentDidUpdate(prevProps) {
+    // reset page if items array has changed
+    if (this.props.page !== prevProps.page) {
+      this.setPage(this.props.page);
+    }
+  }
+
+  setPage(page) {
+    // update state
+    this.setState({ page });
+    this.props.onChangePage(page);
+  }
+
+
+  render() {
+    const {
+      page,
+      pages,
+      count,
+    } = this.props;
+
+    let backBtn = null;
+    let forwardBtn = null;
+
+    if (page > 1) {
+      backBtn =
+        (
+          <button className="pagination__prev" onClick={() => { this.setPage(page - 1); }}>
+            Prev
+          </button>
+        );
+    }
+
+    if (page < pages) {
+      forwardBtn =
+      (
+        <button className="pagination__next" onClick={() => { this.setPage(page + 1); }}>
+          Next
+        </button>
+      );
+    }
+    return (
+      <div className="pagination">
+        {backBtn}
+        <span className="pagination__current_page">
+          Page {page} of {pages} - {count} total results
+        </span>
+        {forwardBtn}
+      </div>
+    );
+  }
+}
+
+
+Pagination.propTypes = propTypes;
 Pagination.defaultProps = defaultProps;
 
 module.exports = Pagination;
