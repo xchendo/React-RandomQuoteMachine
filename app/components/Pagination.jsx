@@ -21,29 +21,9 @@ const propTypes = {
 };
 
 class Pagination extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { page: defaultProps.page };
-  }
-
-  componentWillMount() {
-    // set page if items array isn't empty
-    this.setPage(this.props.page);
-  }
-
-  componentDidUpdate(prevProps) {
-    // reset page if items array has changed
-    if (this.props.page !== prevProps.page) {
-      this.setPage(this.props.page);
-    }
-  }
-
   setPage(page) {
-    // update state
-    this.setState({ page });
     this.props.onChangePage(page);
   }
-
 
   render() {
     const {
