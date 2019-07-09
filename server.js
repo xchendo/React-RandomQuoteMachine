@@ -10,7 +10,7 @@ require('./models/Quote');
 
 
 // Connect dat DB
-mongoose.connect(ENV['DATABASE']);
+mongoose.connect(process.env.DATABASE);
 
 // tell Mongoose to use es6 promises
 mongoose.Promise = global.Promise;
