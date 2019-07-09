@@ -10,7 +10,7 @@ require('./models/Quote');
 
 
 // Connect dat DB
-mongoose.connect(process.env.DATABASE);
+mongoose.connect(ENV['DATABASE']);
 
 // tell Mongoose to use es6 promises
 mongoose.Promise = global.Promise;
@@ -43,6 +43,6 @@ app.use('/api', routes);
 
 
 app.listen(PORT, function() {
-  console.log(process.env.DATABASE);
+  console.log(ENV['DATABASE']);
   console.log('Express is up on port ' + PORT);
 });
