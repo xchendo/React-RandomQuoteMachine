@@ -43,6 +43,6 @@ app.use('/api', routes);
 
 
 app.listen(PORT, function() {
-  console.log(ENV['DATABASE']);
+  console.log(process.env.DATABASE);
   console.log('Express is up on port ' + PORT);
 });
