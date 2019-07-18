@@ -67,12 +67,12 @@ class Quote extends React.Component {
     }
 
     return(
-      <div className = "row">
+      <div className = "quote-machine">
         <h1 className = "center">Motivational Quotes</h1>
-        <div>
+        
           <ToggleButtons active={view} handleToggleClick={this.handleToggleClick}/>
           {shownComponent}
-        </div>
+        
         <Flash/>
       </div>
     );
