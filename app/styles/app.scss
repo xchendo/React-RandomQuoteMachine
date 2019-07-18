@@ -8,3 +8,9 @@
 @import "components/Button";
 @import "components/Quote";
 @import url('https://fonts.googleapis.com/css?family=Tillana');
+
+#app {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 15px;
+}

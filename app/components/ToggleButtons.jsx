@@ -18,9 +18,9 @@ class ToggleButtons extends React.Component {
   render() {
     return (
       <div className="toggleButtons">
-        <button onClick={() => {this.handleClick('random')}} className={'button button--third ' + (this.props.active === 'random' ? 'button--active' : '')}>Get random</button>
-        <button onClick={() => {this.handleClick('add')}} className={'button button--third ' + (this.props.active === 'add' ? 'button--active' : '')}>Add Quote</button>
-        <button onClick={() => {this.handleClick('all')}} className={'button button--third ' + (this.props.active === 'all' ? 'button--active' : '')}>View All</button>
+        <button onClick={() => {this.handleClick('random')}} className={'button ' + (this.props.active === 'random' ? 'button--active' : '')}>Get random</button>
+        <button onClick={() => {this.handleClick('add')}} className={'button' + (this.props.active === 'add' ? 'button--active' : '')}>Add Quote</button>
+        <button onClick={() => {this.handleClick('all')}} className={'button' + (this.props.active === 'all' ? 'button--active' : '')}>View All</button>
       </div>
     );
   }
