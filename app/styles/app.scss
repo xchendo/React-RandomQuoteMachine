@@ -2,11 +2,12 @@
 @import "base/variables";
 @import "base/animations";
 @import "components/QuoteDisplay";
-@import "components/addQuoteForm";
+@import "components/AddQuoteForm";
 @import "components/Flash";
 @import "components/ToggleButtons";
 @import "components/Button";
 @import "components/Quote";
+@import "components/AllQuotes";
 @import url('https://fonts.googleapis.com/css?family=Tillana');
 
 #app {

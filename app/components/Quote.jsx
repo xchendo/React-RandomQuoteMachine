@@ -68,7 +68,7 @@ class Quote extends React.Component {
 
     return(
       <div className = "quote-machine">
-        <h1 className = "center">Motivational Quotes</h1>
+        <h1 className = "center">Stranger Quotes</h1>
         
           <ToggleButtons active={view} handleToggleClick={this.handleToggleClick}/>
           {shownComponent}

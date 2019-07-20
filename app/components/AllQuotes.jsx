@@ -53,16 +53,14 @@ class AllQuotes extends React.Component {
     const quotes = this.state.data;
     return quotes.map((quote, i) => {
       return (
-        <div className="all-quotes__quote" key={i}>
-          <div className="quote-content">
-            <span>{i + 1}</span>
-            <div className="quote__text">
-              {quote.text}
-            </div>
-            <div className="quote__author">
-              {quote.author}
-            </div>
+        <div className="quote-content" key={i}>
+          <div className="quote__text">
+            {quote.text}
           </div>
+          <div className="quote__author">
+            ~ {quote.author}
+          </div>
+          
           
         </div>
       );
