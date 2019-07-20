@@ -1,6 +1,6 @@
 .toggleButtons {
   display: flex;
-  margin: 0 auto  15px auto;
+  //margin: 0 auto  15px auto;
 
   & .button {
     padding: 10px 20px 11px;
@@ -21,7 +21,7 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
-  .toggleButtons {
-    width: 90%;
-  }
+  // .toggleButtons {
+  //   width: 90%;
+  // }
 }

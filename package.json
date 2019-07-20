@@ -1,6 +1,9 @@
 {
   "name": "react-rqm",
   "version": "1.0.0",
+  "engines": {
+    "node": "v8.10.0"
+  },
   "description": "My Random Quote Machine redone using React",
   "main": "app.jsx",
   "scripts": {
