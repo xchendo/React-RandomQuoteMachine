@@ -54,7 +54,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
     "foundation-sites": "^6.4.3",
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "node-sass": "^3.13.0",
     "sass-loader": "^4.0.2",
     "script-loader": "^0.7.2",
